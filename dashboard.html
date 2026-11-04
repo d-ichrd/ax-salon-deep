@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>대시보드 · AX 살롱 뤼미에르</title>
+<meta name="theme-color" content="#2A1120">
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="live.css">
+<style>
+.modes { display: flex; gap: 4px; flex-wrap: wrap; }
+.modes button { border: 0; background: none; color: var(--cream-dim); font: 600 14.5px/1 var(--body); padding: 9px 13px; border-radius: 999px; cursor: pointer; }
+.modes button[aria-pressed="true"] { background: var(--cream); color: var(--ink); }
+.view { padding: 30px 0 60px; }
+.stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-bottom: 24px; }
+.stat { background: var(--wall-2); border-radius: 16px; padding: 14px 16px; }
+.stat b { display: block; font: 800 34px/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--cream-dim); }
+.tgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.tcard { background: var(--paper); color: var(--ink); border-radius: 18px; overflow: hidden; display: grid; grid-template-rows: 150px auto; }
+.tcard .ph { background: var(--paper-2) center / cover no-repeat; display: grid; place-items: center; color: var(--ink-soft); font-size: 13.5px; }
+.tcard .bd { padding: 14px 16px 16px; display: grid; gap: 4px; }
+.tcard .no { font: 800 24px/1 var(--display); }
+.tcard .tp { font: 700 15px/1.45 var(--display); }
+.tcard .ms { font-size: 13px; color: var(--ink-soft); }
+.tools { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+
+/* stage */
+.stage { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; height: calc(100vh - 270px); min-height: 380px; }
+:fullscreen .stage { height: calc(100vh - 170px); }
+.stage .photo { background: #160911; border-radius: 20px; display: grid; place-items: center; overflow: hidden; min-height: 360px; }
+.stage .photo img { width: 100%; height: 100%; object-fit: contain; }
+.stage .photo .none { color: var(--cream-dim); text-align: center; padding: 30px; }
+.stage .side { display: grid; align-content: start; gap: 14px; }
+.stage .num { font: 800 clamp(48px, 7vw, 92px)/1 var(--display); letter-spacing: -.02em; }
+.stage .side .paper { padding: 20px 22px; border-radius: 18px; }
+.stage .cid { font: 800 15px/1 var(--display); color: var(--paper); padding: 5px 10px; border-radius: 999px; display: inline-block; }
+.stage .ctitle { font: 800 22px/1.4 var(--display); margin-top: 8px; }
+.stage ul { margin: 6px 0 0; padding-left: 1.1em; font-size: 16px; line-height: 1.7; }
+.order { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+.order button { width: 42px; height: 42px; border-radius: 50%; border: 0; cursor: pointer; font: 800 17px/1 var(--display); background: var(--wall-3); color: var(--cream); }
+.order button.on { background: var(--arch); }
+.order button.done { opacity: .45; }
+.ctrl { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 16px; }
+.ring { font: 800 30px/1 var(--display); font-variant-numeric: tabular-nums; min-width: 92px; }
+.ring.late { color: var(--arch); }
+
+/* vote */
+.vote-wrap { max-width: 860px; }
+.vote-wrap h2 { font-size: clamp(44px, 6.4vw, 92px); font-weight: 800; line-height: 1; letter-spacing: -.03em; }
+.vote-wrap .total { color: var(--cream-dim); margin: 6px 0 24px; }
+.barrow { grid-template-columns: 90px 1fr 56px; }
+.barrow .track { height: 42px; }
+.barrow .lbl { font-size: 20px; }
+.barrow .n { font-size: 24px; }
+.veil .fill { width: 100% !important; background: repeating-linear-gradient(45deg, color-mix(in srgb, var(--cream) 10%, transparent) 0 10px, transparent 10px 20px) !important; }
+.veil .n { opacity: 0; }
+.winner { display: flex; gap: 18px; align-items: center; margin-top: 30px; }
+.waxseal { width: 110px; aspect-ratio: 1; border-radius: 50%; background: var(--arch); color: var(--cream); display: grid; place-items: center; text-align: center; font: 800 20px/1.15 var(--display); transform: rotate(-12deg) scale(0); box-shadow: 0 8px 0 rgba(0,0,0,.25), inset 0 0 0 5px color-mix(in srgb, var(--cream) 18%, transparent); transition: transform .6s cubic-bezier(.3,1.6,.5,1) .9s; }
+.winner.show .waxseal { transform: rotate(-12deg) scale(1); }
+.winner p { margin: 0; font: 700 22px/1.4 var(--display); opacity: 0; transition: opacity .5s 1.3s; }
+.winner.show p { opacity: 1; }
+.admin .btn[aria-pressed="true"] { background: var(--ochre); color: var(--ink); box-shadow: none; }
+.admin { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 26px; }
+
+/* guestbook */
+.gbtop { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 30px; margin-bottom: 28px; align-items: center; }
+.big { font: 800 64px/1 var(--display); }
+.big small { font-size: 22px; color: var(--cream-dim); }
+.gbtop .lamps .lamp { width: 20px; height: 26px; }
+.dist .barrow { grid-template-columns: 80px 1fr 40px; }
+.dist .barrow .track { height: 18px; }
+.dist .barrow .lbl, .dist .barrow .n { font-size: 14px; }
+
+/* synthesis */
+.syn { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.syn textarea { width: 100%; min-height: 460px; font: 400 15px/1.7 var(--body); color: var(--ink); background: #FFFAF0; border: 1.5px solid var(--ink); border-radius: 8px; padding: 14px; }
+.preview h2 { font-size: 24px; margin: 0 0 8px; } .preview h3 { font-size: 18px; margin: 18px 0 4px; } .preview ul { padding-left: 1.1em; margin: 4px 0; } .preview p, .preview li { font-size: 15.5px; }
+.pub { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--wall-3); }
+.pub.on { background: var(--moss); }
+
+/* qr + key */
+dialog { border: 0; border-radius: 22px; padding: 28px; background: var(--paper); color: var(--ink); text-align: center; max-width: min(92vw, 420px); }
+dialog::backdrop { background: rgba(20, 6, 14, .7); }
+#qrbox { display: grid; place-items: center; margin: 14px 0; }
+#qrbox img, #qrbox canvas { width: 260px !important; height: 260px !important; }
+.keyrow { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 40px; padding-top: 18px; border-top: 1px solid color-mix(in srgb, var(--cream) 14%, transparent); font-size: 14px; color: var(--cream-dim); }
+.keyrow input { font: 400 15px/1.4 var(--body); padding: 8px 12px; border-radius: 8px; border: 1px solid color-mix(in srgb, var(--cream) 30%, transparent); background: var(--wall-2); color: var(--cream); }
+:fullscreen .bar, :fullscreen .keyrow { display: none; }
+:fullscreen .view { padding-top: 24px; }
+
+@media (max-width: 900px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stage, .syn, .gbtop { grid-template-columns: 1fr; }
+  .bar .wrap { flex-wrap: wrap; }
+}
+@media (max-width: 520px) { .tgrid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="program.html">AX 살롱<em>대시보드</em></a>
+    <div class="modes" role="group" aria-label="화면">
+      <button type="button" data-v="status" aria-pressed="true">현황</button>
+      <button type="button" data-v="stage" aria-pressed="false">발표 무대</button>
+      <button type="button" data-v="vote" aria-pressed="false">투표</button>
+      <button type="button" data-v="gb" aria-pressed="false">방명록</button>
+      <button type="button" data-v="syn" aria-pressed="false">오늘의 정리</button>
+    </div>
+    <button class="btn btn-ghost btn-sm" type="button" id="fs">전체 화면</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 현황 -->
+  <section class="view" data-view="status" aria-label="현황">
+    <div class="stats" id="stats"></div>
+    <div class="tgrid" id="tgrid"></div>
+    <div class="tools">
+      <button class="btn btn-primary btn-sm" type="button" id="qr-open">탁자 페이지 QR 띄우기</button>
+      <a class="btn btn-ghost btn-sm" id="sheet-link" target="_blank" rel="noopener" hidden>구글 시트 열기</a>
+      <a class="btn btn-ghost btn-sm" id="drive-link" target="_blank" rel="noopener" hidden>워크시트 사진 폴더</a>
+      <button class="btn btn-ghost btn-sm" type="button" id="report">구글 문서로 기록 묶기</button>
+    </div>
+  </section>
+
+  <!-- 발표 무대 -->
+  <section class="view" data-view="stage" hidden aria-label="발표 무대">
+    <div class="order" id="order"></div>
+    <div class="stage" id="stage"></div>
+    <div class="ctrl">
+      <button class="btn btn-ghost btn-sm" type="button" id="prev">이전 탁자</button>
+      <button class="btn btn-primary btn-sm" type="button" id="next">다음 탁자</button>
+      <button class="btn btn-ghost btn-sm" type="button" id="shuffle">발표 순서 뽑기</button>
+      <span style="flex:1"></span>
+      <span class="ring" id="ring" role="timer">5:00</span>
+      <button class="btn btn-ghost btn-sm" type="button" id="ring-go">5분 시작</button>
+    </div>
+    <p class="muted" style="font-size:13px;margin-top:10px">← → 로 탁자를 넘기고, 스페이스로 시간을 재요. F를 누르면 전체 화면이에요.</p>
+  </section>
+
+  <!-- 투표 -->
+  <section class="view vote-wrap" data-view="vote" hidden aria-label="투표">
+    <div class="admin">
+      <button class="btn btn-ghost btn-sm" type="button" data-vote="open" aria-pressed="false">투표 열기</button>
+      <button class="btn btn-ghost btn-sm" type="button" data-vote="closed" aria-pressed="false">투표 닫기</button>
+      <button class="btn btn-ghost btn-sm" type="button" data-vote="revealed" aria-pressed="false">결과 공개</button>
+    </div>
+    <h2 id="v-h">가장 도움이 된 탁자</h2>
+    <p class="total" id="v-total"></p>
+    <div class="bars" id="v-bars"></div>
+    <div class="winner" id="winner"><div class="waxseal" id="seal"></div><p id="win-p"></p></div>
+  </section>
+
+  <!-- 방명록 -->
+  <section class="view" data-view="gb" hidden aria-label="방명록">
+    <div class="gbtop">
+      <div><div class="big" id="avg">–</div><div class="lamps" id="avg-l" style="margin:10px 0 6px"></div><div class="muted" id="avg-n"></div></div>
+      <div class="bars dist" id="dist"></div>
+    </div>
+    <div class="slips" id="slips"></div>
+  </section>
+
+  <!-- 오늘의 정리 -->
+  <section class="view" data-view="syn" hidden aria-label="오늘의 정리">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px">
+      <button class="btn btn-primary btn-sm" type="button" id="syn-make">AI와 함께 초안 쓰기</button>
+      <button class="btn btn-ghost btn-sm" type="button" id="syn-save">고친 내용 저장</button>
+      <button class="btn btn-ghost btn-sm" type="button" id="syn-pub">순서지에 공개</button>
+      <span class="pub" id="syn-state">초안 없음</span>
+    </div>
+    <p class="muted" style="margin:0 0 16px;font-size:14.5px;max-width:720px">AI가 모든 탁자의 워크시트 요약, 고른 카드, 방명록, 투표를 읽고 공통 패턴과 남은 질문을 초안으로 써요. 왼쪽에서 고치고 저장한 뒤 공개하면 참석자 순서지에 "오늘의 정리"로 나타나요.</p>
+    <div class="syn">
+      <textarea id="syn-text" aria-label="오늘의 정리 원고" placeholder="AI와 함께 초안 쓰기를 누르면 여기에 초안이 들어와요."></textarea>
+      <div class="paper preview" id="syn-prev"><div class="empty">미리보기</div></div>
+    </div>
+  </section>
+
+  <div class="keyrow">
+    <label for="key">진행자 열쇠</label><input id="key" type="password" autocomplete="off" placeholder="투표 조작·정리 공개에 필요해요">
+    <button class="btn btn-ghost btn-sm" type="button" id="key-save">기억하기</button>
+    <span id="updated" style="margin-left:auto"></span>
+  </div>
+</main>
+
+<dialog id="qr">
+  <h2 style="font-size:24px">탁자 페이지</h2>
+  <div id="qrbox"></div>
+  <p id="qr-url" style="font-size:14px;word-break:break-all;margin:0 0 14px"></p>
+  <form method="dialog"><button class="btn btn-ink btn-sm">닫기</button></form>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="live.config.js"></script>
+<script src="live.js"></script>
+<script>
+(() => {
+  const { CFG, TABLES, CARDS, esc, $, $$, store, toast, api, poll, lamps, md, demoBanner, DEMO } = window.AXL;
+  demoBanner();
+  let S = null, view = 'status';
+  const key = () => store.get('axl-admin', '');
+  $('#key').value = key();
+  $('#key-save').addEventListener('click', () => { store.set('axl-admin', $('#key').value.trim()); toast('진행자 열쇠를 이 기기에 기억했어요.'); live.refresh(); });
+  function needKey() { if (!key() && !DEMO) { toast('아래 진행자 열쇠를 먼저 입력해 주세요.', 'err'); $('#key').focus(); return true; } return false; }
+  if (CFG.sheetUrl) { $('#sheet-link').href = CFG.sheetUrl; $('#sheet-link').hidden = false; }
+  if (CFG.driveUrl) { $('#drive-link').href = CFG.driveUrl; $('#drive-link').hidden = false; }
+
+  /* ---------- views ---------- */
+  function setView(v) {
+    view = v; store.set('axl-view', v); sig = '';
+    $$('.modes button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+    $$('.view').forEach(s => s.hidden = s.dataset.view !== v);
+    render();
+  }
+  $$('.modes button').forEach(b => b.addEventListener('click', () => setView(b.dataset.v)));
+  $('#fs').addEventListener('click', toggleFs);
+  function toggleFs() { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen?.(); }
+
+  /* ---------- 현황 ---------- */
+  function renderStatus() {
+    const tp = Object.keys(S.topics).length, ws = Object.values(S.worksheets).filter(w => w.img).length;
+    $('#stats').innerHTML = [
+      [`${tp}<small style="font-size:18px;color:var(--cream-dim)">/${TABLES.length}</small>`, '카드를 고른 탁자'],
+      [`${ws}<small style="font-size:18px;color:var(--cream-dim)">/${TABLES.length}</small>`, '올라온 워크시트'],
+      [S.notes.length, '방명록'],
+      [S.rating.count ? S.rating.avg.toFixed(1) : '–', `등불 평균 (${S.rating.count}명)`],
+      [S.votes.total, S.vote === 'open' ? '투표 중' : S.vote === 'revealed' ? '투표 · 결과 공개' : '투표 · 열리기 전']
+    ].map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
+    $('#tgrid').innerHTML = TABLES.map(t => {
+      const w = S.worksheets[t] || {}, p = S.topics[t];
+      return `<div class="tcard"><div class="ph" style="${w.img ? `background-image:url('${esc(w.img)}')` : ''}">${w.img ? '' : '워크시트 전'}</div>
+        <div class="bd"><span class="no">${t}번 탁자</span><span class="tp">${p ? esc(p.cardId + ' · ' + p.title) : '카드 고르는 중'}</span>
+        <span class="ms">${w.presenter ? '발표 ' + esc(w.presenter) : '발표자 미정'} · ${w.summary ? '발표 메모 있음' : '발표 메모 없음'}</span></div></div>`;
+    }).join('');
+  }
+  $('#qr-open').addEventListener('click', () => {
+    const url = new URL('table.html', location.href).href;
+    $('#qrbox').innerHTML = ''; $('#qr-url').textContent = url;
+    if (window.QRCode) new QRCode($('#qrbox'), { text: url, width: 520, height: 520, colorDark: '#2B1420', colorLight: '#F7EDD8' });
+    else $('#qrbox').textContent = 'QR을 그리지 못했어요. 주소를 띄워 주세요.';
+    $('#qr').showModal();
+  });
+  $('#report').addEventListener('click', async () => {
+    if (needKey()) return;
+    const b = $('#report'); b.disabled = true; b.textContent = '문서를 만드는 중…';
+    try { const r = await api.send('report', { key: key() }); if (r.url) { window.open(r.url, '_blank', 'noopener'); toast('구글 문서를 만들었어요.'); } else toast(r.note || '문서를 만들었어요.'); }
+    catch (e) { toast(e.message, 'err'); } finally { b.disabled = false; b.textContent = '구글 문서로 기록 묶기'; }
+  });
+
+  /* ---------- 발표 무대 ---------- */
+  let order = store.get('axl-order', TABLES.slice()), pos = store.get('axl-pos', 0), done = new Set(store.get('axl-done', []));
+  if (order.length !== TABLES.length) { order = TABLES.slice(); pos = 0; }
+  function saveStage() { store.set('axl-order', order); store.set('axl-pos', pos); store.set('axl-done', [...done]); }
+  function renderStage() {
+    $('#order').innerHTML = `<span class="muted" style="font-size:13.5px;margin-right:4px">발표 순서</span>` + order.map((t, i) => `<button type="button" data-i="${i}" class="${i === pos ? 'on' : ''}${done.has(t) && i !== pos ? ' done' : ''}" aria-label="${t}번 탁자">${t}</button>`).join('');
+    const t = order[pos], w = S.worksheets[t] || {}, p = S.topics[t], c = p && CARDS[p.cardId];
+    const lines = (w.summary || '').split('\n').map(x => x.trim()).filter(Boolean);
+    $('#stage').innerHTML = `<div class="photo">${w.img ? `<img src="${esc(w.img)}" alt="${t}번 탁자 워크시트">` : `<div class="none">${t}번 탁자의 워크시트가 아직 올라오지 않았어요.<br>기록자에게 탁자 페이지의 "기록"에서 올려 달라고 해 주세요.</div>`}</div>
+      <div class="side"><div class="num">${t}번 탁자</div>
+        <div class="paper">${c ? `<span class="cid" style="background:${c.color}">${c.id}</span><div class="ctitle">${esc(c.title)}</div>` : '<div class="ctitle">카드 기록 없음</div>'}
+        ${w.presenter ? `<p class="muted" style="margin:10px 0 0">발표 ${esc(w.presenter)}</p>` : ''}
+        ${lines.length ? `<ul>${lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul>` : ''}</div></div>`;
+  }
+  function go(d) { if (!S) return; done.add(order[pos]); pos = Math.min(order.length - 1, Math.max(0, pos + d)); resetRing(); saveStage(); renderStage(); }
+  $('#prev').addEventListener('click', () => go(-1));
+  $('#next').addEventListener('click', () => go(1));
+  $('#order').addEventListener('click', e => { const b = e.target.closest('button[data-i]'); if (b && S) { pos = Number(b.dataset.i); resetRing(); saveStage(); renderStage(); } });
+  $('#shuffle').addEventListener('click', () => {
+    const final = TABLES.slice().sort(() => Math.random() - .5); let n = 0;
+    if (!S) return;
+    const spin = setInterval(() => { order = TABLES.slice().sort(() => Math.random() - .5); renderStage(); if (++n > 9) { clearInterval(spin); order = final; pos = 0; done = new Set(); saveStage(); renderStage(); toast('발표 순서를 정했어요: ' + final.join(' · ')); } }, 90);
+  });
+  let ringStart = 0, ringLeft = 300, ringT;
+  function paintRing() {
+    const r = ringStart ? ringLeft - (Date.now() - ringStart) / 1000 : ringLeft, a = Math.abs(Math.ceil(r));
+    $('#ring').textContent = (r < 0 ? '+' : '') + `${Math.floor(a / 60)}:${String(a % 60).padStart(2, '0')}`;
+    $('#ring').classList.toggle('late', r < 0);
+    $('#ring-go').textContent = ringStart ? '멈추기' : (ringLeft < 300 ? '이어서' : '5분 시작');
+  }
+  function resetRing() { ringStart = 0; ringLeft = 300; paintRing(); }
+  function toggleRing() { if (ringStart) { ringLeft -= (Date.now() - ringStart) / 1000; ringStart = 0; } else ringStart = Date.now(); paintRing(); }
+  $('#ring-go').addEventListener('click', toggleRing);
+  ringT = setInterval(paintRing, 500);
+  addEventListener('keydown', e => {
+    if (e.target.closest('input, textarea')) return;
+    if (e.key === 'f' || e.key === 'F') toggleFs();
+    if (view !== 'stage') return;
+    if (e.key === 'ArrowRight') go(1); else if (e.key === 'ArrowLeft') go(-1); else if (e.key === ' ') { e.preventDefault(); toggleRing(); }
+  });
+
+  /* ---------- 투표 ---------- */
+  let revealedOnce = false;
+  function renderVote() {
+    const st = S.vote, c = S.votes.counts;
+    $$('[data-vote]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.vote === st)));
+    $('#v-total').textContent = st === 'open' ? `투표 중 · 지금까지 ${S.votes.total}표` : st === 'revealed' ? `모두 ${S.votes.total}표` : '발표가 끝나면 투표를 열어 주세요.';
+    const show = st === 'revealed' && c, max = c ? Math.max(1, ...Object.values(c)) : 1;
+    const top = show ? Math.max(...Object.values(c)) : -1;
+    $('#v-bars').innerHTML = TABLES.map(t => `<div class="barrow${show ? (c[t] === top && top > 0 ? ' win' : '') : ' veil'}"><span class="lbl">${t}번</span><span class="track"><span class="fill" data-w="${show ? c[t] / max * 100 : 0}"></span></span><span class="n">${show ? c[t] : ''}</span></div>`).join('');
+    requestAnimationFrame(() => requestAnimationFrame(() => $$('#v-bars .fill').forEach(f => f.style.width = f.dataset.w + '%')));
+    const win = $('#winner');
+    if (show && top > 0) {
+      const ws = TABLES.filter(t => c[t] === top);
+      $('#seal').innerHTML = `${ws.join('·')}번<br>탁자`;
+      $('#win-p').textContent = ws.length > 1 ? '공동 우승이에요. 탁자 분들께 작은 선물을 드려요.' : '가장 도움이 된 탁자예요. 탁자 분들께 작은 선물을 드려요.';
+      if (!revealedOnce) { win.classList.remove('show'); requestAnimationFrame(() => requestAnimationFrame(() => win.classList.add('show'))); revealedOnce = true; }
+    } else { win.classList.remove('show'); revealedOnce = false; }
+  }
+  $$('[data-vote]').forEach(b => b.addEventListener('click', async () => {
+    if (needKey()) return;
+    try { await api.send('admin', { key: key(), vote: b.dataset.vote }); toast({ open: '투표를 열었어요.', closed: '투표를 닫았어요.', revealed: '결과를 공개했어요.' }[b.dataset.vote]); live.refresh(); }
+    catch (e) { toast(e.message, 'err'); }
+  }));
+
+  /* ---------- 방명록 ---------- */
+  function renderGb() {
+    const r = S.rating;
+    $('#avg').innerHTML = r.count ? `${r.avg.toFixed(1)}<small> / 5</small>` : '–';
+    $('#avg-l').innerHTML = lamps(r.avg); $('#avg-n').textContent = r.count ? `${r.count}명이 등불을 켰어요` : '아직 등불을 켠 분이 없어요';
+    const mx = Math.max(1, ...r.dist);
+    $('#dist').innerHTML = [5, 4, 3, 2, 1].map(n => `<div class="barrow"><span class="lbl">등불 ${n}</span><span class="track"><span class="fill" style="width:${r.dist[n - 1] / mx * 100}%"></span></span><span class="n">${r.dist[n - 1]}</span></div>`).join('');
+    $('#slips').innerHTML = S.notes.length ? S.notes.slice(0, 60).map((n, i) => `<figure class="slip" style="--r:${((i * 37) % 7 - 3) * .5}deg"><p>${esc(n.text)}</p><figcaption class="meta"><span>${n.name ? esc(n.name) : '이름 없이'}${n.table ? ` · ${n.table}번 탁자` : ''}</span>${n.rating ? `<span class="lamps">${lamps(n.rating)}</span>` : ''}</figcaption></figure>`).join('') : '<div class="empty">방명록이 비어 있어요. 탁자 페이지 QR을 띄워 한 줄씩 부탁해 보세요.</div>';
+  }
+
+  /* ---------- 오늘의 정리 ---------- */
+  let synDirty = false;
+  $('#syn-text').addEventListener('input', () => { synDirty = true; $('#syn-prev').innerHTML = md($('#syn-text').value) || '<div class="empty">미리보기</div>'; });
+  function renderSyn() {
+    const s = S.synthesis;
+    $('#syn-state').textContent = !s ? '초안 없음' : s.published ? '순서지에 공개 중' : '공개 전';
+    $('#syn-state').className = 'pub' + (s && s.published ? ' on' : '');
+    $('#syn-pub').textContent = s && s.published ? '공개 거두기' : '순서지에 공개';
+    if (s && !synDirty && document.activeElement !== $('#syn-text')) { $('#syn-text').value = s.text; $('#syn-prev').innerHTML = md(s.text); }
+  }
+  $('#syn-make').addEventListener('click', async () => {
+    if (needKey()) return;
+    if (synDirty && !confirm('고치던 내용이 새 초안으로 바뀌어요. 계속할까요?')) return;
+    const b = $('#syn-make'); b.disabled = true; b.textContent = 'AI가 기록을 읽는 중…';
+    try { const r = await api.send('ai_synthesis', { key: key() }); synDirty = false; S.synthesis = r.synthesis; renderSyn(); $('#syn-text').value = r.synthesis.text; $('#syn-prev').innerHTML = md(r.synthesis.text); toast('초안이 들어왔어요. 고친 뒤 저장해 주세요.'); live.refresh(); }
+    catch (e) { toast(e.message, 'err'); } finally { b.disabled = false; b.textContent = 'AI와 함께 초안 쓰기'; }
+  });
+  $('#syn-save').addEventListener('click', async () => {
+    if (needKey()) return;
+    try { await api.send('admin', { key: key(), synthesisText: $('#syn-text').value }); synDirty = false; S.synthesis = Object.assign({ published: false }, S.synthesis, { text: $('#syn-text').value, at: new Date().toISOString() }); renderSyn(); toast('저장했어요.'); live.refresh(); }
+    catch (e) { toast(e.message, 'err'); }
+  });
+  $('#syn-pub').addEventListener('click', async () => {
+    if (needKey()) return;
+    if (!S.synthesis) { toast('먼저 초안을 쓰고 저장해 주세요.', 'err'); return; }
+    if (synDirty) { toast('고친 내용을 먼저 저장해 주세요.', 'err'); return; }
+    try { const pub = !S.synthesis.published; await api.send('admin', { key: key(), publish: pub }); S.synthesis.published = pub; renderSyn(); toast(pub ? '순서지에 공개했어요.' : '공개를 거뒀어요.'); live.refresh(); }
+    catch (e) { toast(e.message, 'err'); }
+  });
+
+  /* ---------- live ---------- */
+  let sig = '';
+  function render(force) {
+    if (!S) return;
+    const now = view + JSON.stringify([S.vote, S.topics, S.worksheets, S.votes, S.notes.length && S.notes[0].at, S.notes.length, S.rating, S.synthesis]);
+    if (!force && now === sig) return; sig = now;
+    ({ status: renderStatus, stage: renderStage, vote: renderVote, gb: renderGb, syn: renderSyn })[view]();
+    $('#updated').textContent = '갱신 ' + new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  }
+  const live = poll((s, err) => { if (s) { S = s; render(); } else if (err) $('#updated').textContent = '기록 서버에 닿지 않아요. 잠시 뒤 다시 시도해요.'; }, DEMO ? 2000 : 4000, () => key() || (DEMO ? 'demo' : ''));
+  setView(store.get('axl-view', 'status'));
+})();
+</script>
+</body>
+</html>

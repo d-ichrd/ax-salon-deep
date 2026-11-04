@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>오늘의 순서지 · AX 살롱 뤼미에르</title>
+<meta name="theme-color" content="#2A1120">
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="live.css">
+<style>
+.quick { display: flex; gap: 10px; flex-wrap: wrap; margin: 26px 0 0; }
+.archwin .cap .nx { display: block; font-size: 13px; color: var(--cream-dim); border-top: 1px solid color-mix(in srgb, var(--cream) 14%, transparent); padding-top: 8px; margin-top: 8px; }
+.band-menu { padding: 36px 0 80px; }
+.files-sec, .syn { padding: 70px 0 80px; }
+
+.menu .slot { display: grid; grid-template-columns: 86px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px dashed color-mix(in srgb, var(--ink) 25%, transparent); position: relative; }
+.menu .slot:last-of-type { border-bottom: 0; }
+.menu .time { font: 800 22px/1.1 var(--display); }
+.menu .time small { display: block; font: 500 12.5px/1.6 var(--body); color: var(--ink-soft); }
+.menu h3 { font-size: 20px; font-weight: 700; line-height: 1.4; }
+.menu .tag { margin-bottom: 6px; }
+.menu p { margin: 4px 0 0; color: var(--ink-soft); font-size: 15px; }
+.talks { display: grid; gap: 8px; margin-top: 12px; }
+.talk { display: grid; grid-template-columns: 52px 1fr auto; gap: 12px; align-items: center; background: var(--paper-2); border-radius: 12px; padding: 10px 12px; }
+.talk .tt { font-variant-numeric: tabular-nums; font-size: 13.5px; font-weight: 600; color: var(--arch); }
+.talk b { display: block; font-size: 15px; }
+.talk span.o { font-size: 13px; color: var(--ink-soft); }
+.talk .ttl { font: 700 15px/1.45 var(--display); margin-top: 2px; }
+.talk a.dl { font-size: 13.5px; font-weight: 600; white-space: nowrap; color: var(--ink); }
+.talk .later { font-size: 12.5px; color: var(--ink-soft); white-space: nowrap; }
+.slot.past { opacity: .5; }
+.slot.cur::before { content: ""; position: absolute; left: -22px; top: 22px; width: 10px; height: 16px; border-radius: 50% 50% 45% 45% / 62% 62% 38% 38%; background: radial-gradient(ellipse at 50% 70%, #FFF3C4, var(--ochre) 55%, var(--arch)); box-shadow: 0 0 14px 4px color-mix(in srgb, var(--ochre) 55%, transparent); animation: fl 2.4s ease-in-out infinite; }
+.slot.cur .time { color: var(--arch); }
+@keyframes fl { 50% { transform: scaleY(1.12) rotate(3deg); } }
+.go { display: inline-block; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--ink); }
+
+.files { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.file { display: grid; gap: 4px; background: var(--wall-2); border-radius: 16px; padding: 16px 18px; text-decoration: none; }
+.file b { font: 700 17px/1.4 var(--display); }
+.file span { font-size: 13.5px; color: var(--cream-dim); }
+.file.off { opacity: .55; }
+h2.sec { font-size: clamp(30px, 4.4vw, 48px); font-weight: 800; letter-spacing: -.02em; margin: 0 0 8px; }
+p.sec { margin: 0 0 20px; color: var(--cream-dim); }
+
+.syn .body h2 { font-size: 26px; margin: 4px 0 10px; }
+.syn .body h3 { font-size: 19px; margin: 22px 0 6px; }
+.syn .body p, .syn .body li { font-size: 16px; line-height: 1.8; }
+.syn .body ul { padding-left: 1.2em; margin: 6px 0; }
+
+@media (max-width: 760px) {
+  .menu .slot { grid-template-columns: 1fr; gap: 4px; }
+  .slot.cur::before { left: -14px; top: 24px; }
+  .talk { grid-template-columns: 1fr; gap: 2px; }
+}
+@media print {
+  .hero2 { grid-template-columns: 1fr; padding-top: 0; }
+  .poster { font-size: 44px; }
+  .quick, .syn, .files-sec { display: none !important; }
+  .slot.past { opacity: 1; }
+  .slot.cur::before { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="./">AX 살롱<em>뤼미에르</em></a>
+    <nav class="nav" aria-label="현장 페이지"><a href="program.html" aria-current="page">순서지</a><a href="table.html">탁자</a><a href="directory.html">명함첩</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero2">
+    <div>
+      <div class="eyebrow">2026. 11. 28. 토 · 패스트파이브 삼성4호점</div>
+      <h1 class="poster"><span>오늘의</span><span>순서지</span><span class="seal" aria-hidden="true">11.28<br>SAT</span></h1>
+      <p class="lead" id="wifi">지금 어디쯤인지, 누가 무엇을 이야기하는지, 받아 갈 자료는 무엇인지 여기에서 봐요.</p>
+      <div class="quick noprint">
+        <a class="btn btn-primary" href="table.html">내 탁자로 가기</a>
+        <a class="btn btn-ghost" href="table.html#guestbook">방명록 남기기</a>
+        <button class="btn btn-ghost" type="button" onclick="print()">순서지 인쇄</button>
+      </div>
+    </div>
+    <figure class="archwin" id="arch">
+      <img class="dim" src="assets/arch.jpg" alt="불이 꺼진 응접실. 주홍빛 아치 문, 코발트색 둥근 탁자와 의자를 그린 유화">
+      <img class="lit" src="assets/arch.jpg" alt="" aria-hidden="true">
+      <div class="glow" aria-hidden="true"></div><div class="flame" aria-hidden="true"></div>
+      <figcaption class="cap" id="now" aria-live="polite"></figcaption>
+    </figure>
+  </div>
+
+  <section class="band-menu">
+    <div class="wrap">
+      <article class="paper menu" aria-labelledby="menu-h">
+        <span class="wax" aria-hidden="true">AX</span>
+        <div class="paper-top"><h2 id="menu-h">살롱의 순서</h2><span class="muted">14:00 — 17:45</span></div>
+        <div id="slots"></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="band-2 files-sec" aria-labelledby="files-h">
+    <div class="wrap">
+      <h2 class="sec" id="files-h">함께 나누는 자료</h2>
+      <p class="sec">발표 자료는 연사가 허락한 것만 올라와요. 받은 자료는 조직 안에서 자유롭게 나눠 주세요.</p>
+      <div class="files" id="files"></div>
+    </div>
+  </section>
+
+  <section class="band-table syn" id="summary" hidden aria-labelledby="syn-h">
+    <div class="wrap">
+      <article class="paper">
+        <span class="wax" aria-hidden="true">정리</span>
+        <div class="paper-top"><h2 id="syn-h">오늘의 정리</h2><span class="muted" id="syn-at"></span></div>
+        <div class="ai-note" style="margin-bottom:18px"><span class="who">AI와 함께 쓴 정리</span><p>모든 탁자의 워크시트와 방명록을 AI가 먼저 읽고 초안을 썼고, 살로니에르가 다듬었어요.</p></div>
+        <div class="body" id="syn-body"></div>
+      </article>
+    </div>
+  </section>
+</main>
+<footer class="motto"><div class="wrap"><div><div class="m">빨리 말고, 같이 오래.</div><div style="margin-top:8px">AX 살롱 뤼미에르 · 2026. 11. 28. 토 · 패스트파이브 삼성4호점</div></div><div>주최 창의인재개발연구소 × 다오랩 × 패스트파이브<br>도서 협찬 박영사</div></div></footer>
+
+<script src="live.config.js"></script>
+<script src="live.js"></script>
+<script>
+(() => {
+  const { CFG, PROGRAM, esc, $, toMin, nowInfo, poll, md, lampify, demoBanner } = window.AXL;
+  demoBanner(); lampify($('#arch'));
+  const M = CFG.materials || {};
+  if (CFG.wifi) $('#wifi').textContent = 'Wi-Fi  ' + CFG.wifi;
+  const hhmm = m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+  const LINK = { table: ['table.html', '탁자 페이지 열기'], vote: ['table.html#vote', '투표하러 가기'] };
+
+  function paint() {
+    const n = nowInfo();
+    $('#slots').innerHTML = PROGRAM.map((s, i) => {
+      const cls = n.phase === 'after' || (n.phase === 'live' && i < n.idx) ? ' past' : (n.phase === 'live' && i === n.idx ? ' cur' : '');
+      const talks = s.talks ? `<div class="talks">${s.talks.map(t => `<div class="talk"><span class="tt">${t.t}</span><div><b>${esc(t.name)}</b> <span class="o">${esc(t.org)}</span><div class="ttl">${esc(t.title)}</div></div>${M[t.id] ? `<a class="dl" href="${esc(M[t.id])}" target="_blank" rel="noopener">자료 받기</a>` : '<span class="later">자료는 공유되면 여기에</span>'}</div>`).join('')}</div>` : '';
+      const go = s.link && LINK[s.link] ? `<a class="go noprint" href="${LINK[s.link][0]}">${LINK[s.link][1]}</a>` : '';
+      return `<div class="slot${cls}"${cls === ' cur' ? ' aria-current="step"' : ''}><div class="time">${s.t}<small>${s.d}분</small></div><div>${s.tag ? `<span class="tag">${esc(s.tag)}</span>` : ''}<h3>${esc(s.title)}</h3>${s.note ? `<p>${esc(s.note)}${s.who ? ` · ${esc(s.who)}` : ''}</p>` : ''}${talks}${go}</div></div>`;
+    }).join('');
+    const box = $('#now');
+    if (n.phase === 'before') box.innerHTML = `<span class="k">문이 열리기 전</span><span class="t">오후 2시에 살롱 문이 열려요</span><span class="nx">도착하면 이 페이지에서 지금 순서가 표시돼요.</span>`;
+    else if (n.phase === 'after') box.innerHTML = `<span class="k">살롱이 끝났어요</span><span class="t">함께해 주셔서 고맙습니다</span><span class="nx">오늘의 정리는 이 페이지 아래에, 참여자 연락처는 <a href="directory.html">명함첩</a>에 있어요.</span>`;
+    else {
+      const cur = PROGRAM[n.idx], nx = PROGRAM[n.idx + 1];
+      box.innerHTML = `<span class="k">지금 · ${cur.t}부터</span><span class="t">${esc(cur.title)}</span><span class="s">${n.left}분 남았어요</span>${nx ? `<span class="nx">다음 ${nx.t} · ${esc(nx.title)}</span>` : ''}`;
+    }
+  }
+  paint(); setInterval(paint, 30000);
+
+  const FILES = [
+    ['worksheet', '탁자 워크시트', '기록자용 한 장, 인쇄해서 써요'],
+    ['cards', '질문 카드 15장', '조직에 돌아가 그대로 써 보세요'],
+    ['slides', '연사 발표 자료 묶음', '허락받은 자료만 모았어요'],
+    ['book', '살롱 솔루션 참고 자료', '김혜영 교수 특강 · Co-Creation']
+  ];
+  $('#files').innerHTML = FILES.map(([k, t, d]) => M[k]
+    ? `<a class="file" href="${esc(M[k])}" target="_blank" rel="noopener"><b>${t}</b><span>${d}</span></a>`
+    : `<div class="file off"><b>${t}</b><span>당일 이 자리에 올라와요</span></div>`).join('');
+
+  poll(s => {
+    if (!s || !s.synthesis || !s.synthesis.published) { $('#summary').hidden = true; return; }
+    $('#summary').hidden = false;
+    $('#syn-body').innerHTML = md(s.synthesis.text);
+    $('#syn-at').textContent = new Date(s.synthesis.at).toLocaleString('ko-KR', { month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  }, 30000);
+})();
+</script>
+</body>
+</html>

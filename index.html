@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AX 살롱 심화 · 그래서 뭘 해결했는데?</title>
-<meta name="description" content="11월 28일(토) 14–18시, 패스트파이브 삼성4호점. AI를 업무에 직접 써 본 30명이 둥근 탁자에 둘러앉는 오후의 살롱과, 저자와 함께하는 저녁 북토크. 참가비 30,000원(참가자 전원 책 증정), 신청서 선발제.">
+<title>AX 살롱 뤼미에르 · AX 진짜 해 본 사람들의 이야기</title>
+<meta name="description" content="11월 28일(토) 14:00–17:45, 패스트파이브 삼성4호점. 조직에서 AX를 이끌어 본 팀장급 이상 리더를 모시는 초청 살롱. 네 개의 이야기, 탁자 토론, 살롱 솔루션 특강. 참가비 무료(참가자 전원 책 증정).">
 <meta name="theme-color" content="#2A1120">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://ax-salon-deep.vercel.app/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="AX 살롱">
-<meta property="og:title" content="AX 살롱 심화 · 그래서 뭘 해결했는데?">
-<meta property="og:description" content="11월 28일(토) 14–18시, 패스트파이브 삼성4호점. AI를 업무에 직접 써 본 30명이 둥근 탁자에 둘러앉는 오후의 살롱과, 저자와 함께하는 저녁 북토크. 참가비 30,000원(참가자 전원 책 증정), 신청서 선발제.">
+<meta property="og:title" content="AX 살롱 뤼미에르 · AX 진짜 해 본 사람들의 이야기">
+<meta property="og:description" content="11월 28일(토) 14:00–17:45, 패스트파이브 삼성4호점. 조직에서 AX를 이끌어 본 팀장급 이상 리더를 모시는 초청 살롱. 네 개의 이야기, 탁자 토론, 살롱 솔루션 특강. 참가비 무료(참가자 전원 책 증정).">
 <meta property="og:url" content="https://ax-salon-deep.vercel.app/">
 <meta property="og:image" content="https://ax-salon-deep.vercel.app/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -79,6 +79,7 @@ h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
 .title { font-weight: 800; font-size: clamp(76px, 13vw, 168px); line-height: .9; letter-spacing: -.035em; color: var(--cream); margin-top: 18px; position: relative; display: inline-block; }
 .title .ko { display: block; }
 .seal { position: absolute; left: calc(100% + 12px); top: 12px; width: clamp(64px, 8vw, 92px); aspect-ratio: 1; border-radius: 50%; background: var(--arch); color: var(--cream); display: grid; place-items: center; font: 700 clamp(17px, 2vw, 22px)/1 var(--display); transform: rotate(-12deg); box-shadow: 0 6px 0 rgba(0,0,0,.25); }
+.seal-long { font-size: clamp(13px, 1.6vw, 18px); letter-spacing: -.04em; }
 .q { font-weight: 500; font-size: clamp(26px, 3.6vw, 42px); line-height: 1.25; margin-top: 26px; color: var(--cream); }
 .motto { font-size: 18px; color: var(--cream-dim); margin-top: 8px; }
 .facts { display: grid; grid-template-columns: repeat(4, auto); gap: 10px 32px; margin: 34px 0 30px; padding: 0; justify-content: start; }
@@ -364,17 +365,24 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
 .mapframe iframe { display: block; width: 100%; height: 100%; border: 0; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .btn[disabled] { opacity: .6; cursor: progress; }
+.hosted { margin: 16px 0 22px; font-size: 13px; color: var(--cream-dim); letter-spacing: .01em; }
+.hosted b { color: var(--cream); font-weight: 600; }
+.hosted .nw { white-space: nowrap; }
+.stats.three { grid-template-columns: repeat(3, 1fr); }
+.gtime { display: inline-block; margin-top: 4px; font-size: 13px; font-weight: 600; color: var(--arch); font-variant-numeric: tabular-nums; }
+.rt-flow { margin: 10px 0 0; padding-left: 1.3em; color: var(--ink-soft); font-size: 15px; }
+.rt-flow li { margin: 2px 0; }
 </style>
 </head>
 <body>
 <header class="bar">
   <div class="wrap">
-    <a class="logo" href="#top">AX 살롱<em>심화</em></a>
+    <a class="logo" href="#top">AX 살롱<em>뤼미에르</em></a>
     <nav class="nav" aria-label="페이지 안내">
       <a href="#program">오늘의 순서</a>
       <a href="#people">오늘의 사람들</a>
       <a href="#table">둥근 탁자</a>
-      <button class="btn btn-primary btn-sm" type="button" data-open>초대장 신청</button>
+      <button class="btn btn-primary btn-sm" type="button" data-open>참석 회신</button>
     </nav>
   </div>
 </header>
@@ -384,18 +392,19 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap">
       <div class="hero-copy">
-        <div class="eyebrow">AX Salon · 심화편 · 11.28 Sat</div>
-        <h1 class="title" id="hero-title"><span>AX</span><span class="ko">살롱</span><span class="seal" aria-hidden="true">심화</span></h1>
-        <p class="q">그래서 뭘 해결했는데?</p>
-        <p class="motto">빨리 말고, 같이 오래. AI를 업무에 직접 써 본 30명이 둥근 탁자에 둘러앉는 토요일 오후.</p>
+        <div class="eyebrow">AX Salon · Lumière · 11.28 Sat</div>
+        <h1 class="title" id="hero-title"><span>AX</span><span class="ko">살롱</span><span class="seal seal-long" aria-hidden="true">뤼미에르</span></h1>
+        <p class="q">AX 진짜 해 본 사람들의 이야기</p>
+        <p class="motto">AX 경험을 나누고, 네트워크를 만듭니다.</p>
         <dl class="facts">
           <div><dt>DATE</dt><dd>2026. 11. 28. 토</dd></div>
-          <div><dt>TIME</dt><dd>14:00 — 18:00</dd></div>
+          <div><dt>TIME</dt><dd>14:00 — 17:45</dd></div>
           <div><dt>PLACE</dt><dd><button class="placebtn" type="button" data-map>패스트파이브 삼성4호점 <span aria-hidden="true">↗</span></button></dd></div>
-          <div><dt>FEE</dt><dd>30,000원<small>참가자 전원 책 증정</small></dd></div>
+          <div><dt>FEE</dt><dd>무료<small>참가자 전원 책 증정</small></dd></div>
         </dl>
+        <p class="hosted"><span class="nw">주최 <b>창의인재개발연구소 × 다오랩 × 패스트파이브</b></span> · <span class="nw">도서 협찬 <b>박영사</b></span></p>
         <div class="cta-row">
-          <button class="btn btn-primary" type="button" data-open>초대장 신청하기 →</button>
+          <button class="btn btn-primary" type="button" data-open>참석 회신하기 →</button>
           <a class="btn btn-ghost" href="#program">오늘의 순서 보기</a>
         </div>
         <div class="countdown" aria-live="off">
@@ -412,11 +421,11 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
           <img class="lit" src="assets/arch.jpg" alt="" aria-hidden="true">
           <div class="glow" aria-hidden="true"></div>
           <div aria-hidden="true">
-            <span class="sq" style="left:20%;top:13%">그래서 뭘 해결했는데?</span>
-            <span class="sq" style="left:38%;top:27%">어디부터 AI에 맡겼나요?</span>
-            <span class="sq" style="left:7%;top:47%">'맞다'는 누가 정하나요?</span>
-            <span class="sq" style="left:40%;top:64%">왜 생각보다 안 바뀔까요?</span>
-            <span class="sq" style="left:8%;top:82%">끝까지 사람의 몫은 무엇일까요?</span>
+            <span class="sq" style="left:20%;top:13%">AX 전후 무엇이 바뀌었나?</span>
+            <span class="sq" style="left:38%;top:27%">AI vs 사람, 어디까지 맡길까?</span>
+            <span class="sq" style="left:7%;top:47%">AX 대체 어디서 막히나?</span>
+            <span class="sq" style="left:40%;top:64%">다른 조직은 어떻게 AX 하나?</span>
+            <span class="sq" style="left:8%;top:82%">AX 다 되면 나는 뭐 먹고 사나?</span>
           </div>
           <div class="flame" aria-hidden="true"></div>
         </figure>
@@ -432,26 +441,22 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
       <div class="band-head">
         <div class="eyebrow">The Salon</div>
         <h2 id="promise-title">성공담을 듣는 자리가 아니라,<br>막힌 곳을 같이 들여다보는 자리</h2>
-        <p>AX를 써 보는 데서 멈추지 않고, AI를 실제 업무에 들이며 얻은 성과와 부딪힌 이슈, 해결 방안을 깊이 나눠요. 연사의 이야기도 정답이 아니라 탁자 위에 올려놓는 첫 질문이에요.</p>
+        <p>조직 차원에서 AX를 직접 이끌어 본 팀장급 이상 리더를 초대해, 달라진 것과 막힌 것, 그 앞에서 해 본 시도를 함께 나눠요. 인원보다 한 분 한 분의 경험을 더 중요하게 생각해요.</p>
       </div>
       <div class="promise-grid">
         <div>
-          <div class="eyebrow" style="margin-bottom:6px">살롱의 약속</div>
+          <div class="eyebrow" style="margin-bottom:6px">살롱 이후 얻는 것</div>
           <ol class="vows">
-            <li><span>1</span>평가하지 않고 궁금해해요.</li>
-            <li><span>2</span>실패와 모름은 기여가 됩니다.</li>
-            <li><span>3</span>말하지 않을 권리가 있어요.</li>
+            <li><span>1</span>다른 기업·조직의 AX 경험담</li>
+            <li><span>2</span>AX를 이끌어 온 리더들과의 연결</li>
+            <li><span>3</span>내 AX 고민, 탁자에서 함께 찾은 해법</li>
           </ol>
         </div>
         <div class="who">
-          <div class="eyebrow">이런 분을 모셔요</div>
-          <p>AI를 비즈니스와 업무에 직접 들여 본 실무자와 리더. 바이브코딩에서 에이전트 운영으로, 에이전트 운영에서 조직 전체의 일하는 방식으로 넘어가는 길목에서 고민하는 분이라면 더 반가워요.</p>
-          <p class="note">신청서를 읽고 테이블을 구성하는 선발제예요. 소속은 회사 이메일로 확인해요.<br>※ 선발제로 구성하는 이유는 심화편으로 운영되는 밀도 있는 대화가 필요하기 때문이에요.</p>
-          <div class="stats">
-            <div class="stat"><b>30</b><span>석</span></div>
+          <div class="stats three">
             <div class="stat"><b>4</b><span>개의 이야기</span></div>
-            <div class="stat"><b>6</b><span>개의 탁자</span></div>
-            <div class="stat"><b>2</b><span>곳을 골라 앉는 탁자</span></div>
+            <div class="stat"><b>3</b><span>가지 탁자 주제</span></div>
+            <div class="stat"><b>30</b><span>분, 탁자 토론</span></div>
           </div>
         </div>
       </div>
@@ -462,72 +467,71 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
   <section class="band program" id="program" aria-labelledby="program-title">
     <div class="wrap">
       <div class="band-head">
-        <div class="eyebrow">The Afternoon &amp; Evening</div>
-        <h2 id="program-title">오후의 응접실, 저녁의 서재</h2>
-        <p>오후에는 네 사람이 붙잡았던 질문을 꺼내 놓고 둥근 탁자에서 우리의 이야기로 이어가요. 저녁에는 서재로 자리를 옮겨, 끝내 풀리지 않은 질문을 다시 물어요.</p>
+        <div class="eyebrow">The Program</div>
+        <h2 id="program-title">토요일 오후, 하나의 응접실</h2>
+        <p>현업 리더 네 분의 이야기를 듣고 함께 되짚은 뒤, 탁자마다 하나의 주제를 골라 깊이 이야기해요. 마지막에는 오늘의 대화를 조직 안에 뿌리내리는 방법을 함께 그려요.</p>
       </div>
       <article class="menu">
-        <div class="menu-top"><h3>1부 · 오후의 응접실</h3><span>11.28 SAT 14:00 — 17:00</span></div>
+        <div class="menu-top"><h3>살롱의 순서</h3><span>11.28 SAT 14:00 — 17:45</span></div>
 
         <div class="slot">
           <div class="time">14:00<small>10분</small></div>
-          <div><h4>살롱 문 열기</h4><p>살롱의 약속과 오늘의 테이블 소개 · 사회 김혜영</p></div>
+          <div><h4>살롱 문 열기</h4><p>오늘의 흐름과 탁자 소개 · 살로니에르 신지현 · 정효정</p></div>
         </div>
 
         <div class="slot session">
-          <div class="time">14:10<small>50분</small></div>
+          <div class="time">14:10<small>55분</small></div>
           <div>
-            <span class="tag">세션 1 · 개인과 조직</span>
+            <span class="tag">세션 1 · 현업과 거버넌스</span>
             <h4>AI와 일하는 방식, 정말 바뀌었을까?</h4>
-            <p>모더레이터 신지현 · 이야기 20분씩, 이어서 크로스토크 10분</p>
+            <p>진행 신지현 · 이야기 20분씩, 이어서 디브리핑 15분</p>
             <div class="guests">
               <div class="guest">
                 <div class="mono" aria-hidden="true">주</div>
                 <div>
                   <div class="name">주효진</div><div class="org">前 아모레퍼시픽 AX 담당</div>
-                  <div class="talk">내 머리 꼭대기에 있는 AI와, 나는 어떻게 일하고 있을까?</div>
+                  <div class="gtime">14:10 — 14:30</div>
+                  <div class="talk">내 머리 꼭대기에 있는 AI와 일하는 현업 POV</div>
                   <div class="story">거친 생각과 불안한 눈빛으로 AI와 함께 버틴 현업 마케터, 그리고 세일즈팀이 콘텐츠를 직접 만들게 된 이야기</div>
                   <button class="plink" type="button" data-person="joo">프로필 보기</button>
                 </div>
               </div>
               <div class="guest">
-                <div class="mono" aria-hidden="true">송</div>
+                <div class="mono" aria-hidden="true">유</div>
                 <div>
-                  <div class="name">송인혁</div><div class="org">유니크굿컴퍼니 대표</div>
-                  <div class="talk">지옥까지 갔던 회사는 어떻게 10배로 자랐을까?</div>
-                  <div class="story">60명 오프라인 게임 회사가 '부서별 사장님'이 일하는 나노벤처로 다시 태어난 이야기</div>
-                  <button class="plink" type="button" data-person="song">프로필 보기</button>
+                  <div class="name">유창우</div><div class="org">LG CNS</div>
+                  <div class="gtime">14:30 — 14:50</div>
+                  <div class="talk">AX를 위해 꼭 필요한 것들: 거버넌스 중심</div>
+                  <div class="story">현장에서 보고 듣고 느낀, AX를 굴러가게 하는 거버넌스에 대한 이야기</div>
+                  <button class="plink" type="button" data-person="yoo">프로필 보기</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="slot">
-          <div class="time">15:00<small>10분</small></div>
-          <div><h4>쉬는 시간 · 테이블 인사</h4><p>배정된 탁자에서 첫 질문, "우리 회사에서 AX는 한 문장으로 무엇인가요?"</p></div>
-        </div>
-
         <div class="slot session two">
-          <div class="time">15:10<small>50분</small></div>
+          <div class="time">15:05<small>55분</small></div>
           <div>
-            <span class="tag">세션 2 · 거버넌스와 사람</span>
-            <h4>구조와 사람, 무엇부터 다시 짜야 할까?</h4>
-            <p>모더레이터 신지현 · 이야기 20분씩, 이어서 크로스토크 10분</p>
+            <span class="tag">세션 2 · 조직과 사람</span>
+            <h4>조직과 사람, 무엇부터 다시 짜야 할까?</h4>
+            <p>진행 신지현 · 이야기 20분씩, 이어서 디브리핑 15분</p>
             <div class="guests">
               <div class="guest">
-                <div class="mono" aria-hidden="true">유</div>
+                <div class="mono" aria-hidden="true">송</div>
                 <div>
-                  <div class="name">유창우</div><div class="org">LG CNS</div>
-                  <div class="talk">AX가 굴러가려면, 누가 무엇을 정해야 할까?</div>
-                  <div class="story">현장에서 보고 듣고 느낀, AX를 굴러가게 하는 거버넌스에 대한 이야기</div>
-                  <button class="plink" type="button" data-person="yoo">프로필 보기</button>
+                  <div class="name">송인혁</div><div class="org">유니크굿컴퍼니 대표</div>
+                  <div class="gtime">15:05 — 15:25</div>
+                  <div class="talk">지옥까지 갔다가 나노벤처로 10X 성장한 생존기</div>
+                  <div class="story">60명 오프라인 게임 회사가 '부서별 사장님'이 일하는 나노벤처로 다시 태어난 이야기</div>
+                  <button class="plink" type="button" data-person="song">프로필 보기</button>
                 </div>
               </div>
               <div class="guest">
                 <div class="mono" aria-hidden="true">최</div>
                 <div>
                   <div class="name">최환희</div><div class="org">Fontys 응용과학대학 교수</div>
+                  <div class="gtime">15:25 — 15:45</div>
                   <div class="talk">AI가 일을 가져가면, 우리 손에는 무엇이 남을까?</div>
                   <div class="story">HR에서 시작해 전사로 번지는 AX, 그리고 리더십에 대한 이야기</div>
                   <button class="plink" type="button" data-person="choi">프로필 보기</button>
@@ -538,90 +542,60 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
         </div>
 
         <div class="slot">
-          <div class="time">16:00<small>40분</small></div>
-          <div>
-            <span class="tag">라운드테이블</span>
-            <h4>우리 탁자에서는 어디가 막혀 있을까?</h4>
-            <p>환경 · 프로세스 · 변화관리 세 주제의 탁자 가운데 가장 관심 있는 두 곳을 골라 20분씩 앉아요. 탁자마다 질문 카드를 골라 이야기하고, 라운드테이블 모더레이터가 한 분씩 함께해요.</p>
-          </div>
+          <div class="time">16:00<small>15분</small></div>
+          <div><h4>쉬는 시간 · 탁자로</h4><p>다과를 곁에 두고 내 탁자로 옮겨 앉아 서로 인사를 나눠요.</p></div>
         </div>
 
         <div class="slot">
-          <div class="time">16:40<small>20분</small></div>
-          <div><h4>디브리프하며 서재로</h4><p>탁자에서 나온 이야기를 주제별로 나누고, 가장 멋진 이야기를 나눠 준 분을 무기명 투표로 뽑아요. '아직 막힌 질문'을 질문 벽에 붙이며 자연스럽게 저녁의 서재로 자리를 옮겨요. 1부만 함께하는 분은 이때 책을 받아 가세요.</p></div>
-        </div>
-
-        <dl class="hosts">
-          <div><dt>사회</dt><dd>김혜영</dd></div>
-          <div><dt>살로니에르 · 1부 모더레이터</dt><dd>신지현</dd></div>
-          <div style="grid-column: span 2"><dt>라운드테이블 모더레이터</dt><dd>신지현 · 이정훈 · 정효정 · 황윤자 외</dd></div>
-        </dl>
-      </article>
-
-      <div class="interlude">16:40 — 17:00 · 디브리프하며 서재로</div>
-
-      <!-- 2부 · 저녁의 서재 -->
-      <article class="menu evening" id="evening" aria-labelledby="evening-title">
-        <div class="menu-top"><h3 id="evening-title">2부 · 저녁의 서재</h3><span>17:00 — 18:00</span></div>
-
-        <div class="book">
-          <img src="assets/book.webp" alt="『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 표지. 서응교·전은화·정효정·김혜영 공저, 박영사" width="320" height="504" loading="lazy">
+          <div class="time">16:15<small>30분</small></div>
           <div>
-            <span class="tag">북토크</span>
-            <h4>그래서, 사람은 무엇을 묻나요?</h4>
-            <p class="btitle">『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』</p>
-            <p class="bmeta">서응교 · 전은화 · 정효정 · 김혜영 공저 · 박영사</p>
-            <p class="blead">AI가 무엇을 해결했는지 나눈 오후 다음, 저녁에는 사람이 무엇을 물어야 하는지 이야기해요. 저녁 다과를 곁에 두고 저자들과 나누는 대화가 이날의 네트워킹이에요.</p>
-            <p class="gift">참가자 모두에게 이 책을 드려요 <small>도서 협찬 박영사</small></p>
+            <span class="tag">둥근 탁자</span>
+            <h4>우리 탁자에서는 어디가 막혀 있을까?</h4>
+            <p>탁자마다 세 주제(환경 · 프로세스 · 변화관리)의 질문 카드를 모두 올려 둬요. 한 탁자에 머물며 카드 가운데 하나를 골라 깊이 이야기해요.</p>
+            <ol class="rt-flow">
+              <li>함께 이야기할 주제 카드 고르기</li>
+              <li>돌아가며 내 AX 경험 나누기</li>
+              <li>비슷한 이슈를 넘어선 사례 나누기</li>
+              <li>조직에 가져갈 포인트 정리, 발표자 정하기</li>
+            </ol>
           </div>
         </div>
 
-        <div class="slot evening">
-          <div class="time">17:00<small>10분</small></div>
-          <div><h4>서재 문 열기</h4><p>저녁 다과와 함께 책을 받고 저자 사인도 받아요. 디브리프에서 질문 벽에 모인 '아직 막힌 질문'을 함께 둘러봐요.</p></div>
-        </div>
-
-        <div class="slot evening">
-          <div class="time">17:10<small>30분</small></div>
+        <div class="slot session two">
+          <div class="time">16:45<small>20분</small></div>
           <div>
-            <span class="tag">저자 이야기</span>
-            <h4>책의 한 장, 오후의 한 질문</h4>
-            <p>책의 한 장과 오후 탁자에서 들은 질문을 엮어 15분씩 이야기해요.</p>
+            <span class="tag">살롱 솔루션 · Co-Creation</span>
+            <h4>살롱 이후, 조직에 어떻게 뿌리내릴까?</h4>
+            <p>탁자에서 나온 이야기를 조직 안에서 이어 가는 방법을 나눠요. 참가자 모두에게 『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』을 드려요(도서 협찬 박영사).</p>
             <div class="guests">
               <div class="guest">
                 <div class="mono" aria-hidden="true">김</div>
                 <div>
-                  <div class="name">김혜영</div><div class="org">단국대학교 교수 · 공저자</div>
-                  <div class="talk">이야기 제목 <span class="tbd">곧 공개</span></div>
+                  <div class="name">김혜영</div><div class="org">단국대학교 교수</div>
+                  <div class="gtime">16:45 — 17:05</div>
+                  <div class="talk">살롱의 대화를 조직의 일로: 코크리에이션으로 여는 AX 내재화</div>
+                  <div class="story">오늘 탁자에서 나온 이야기를 조직 안에서 이어 가는, 디자인 씽킹과 코크리에이션의 방법</div>
                   <button class="plink" type="button" data-person="kim">프로필 보기</button>
-                </div>
-              </div>
-              <div class="guest">
-                <div class="mono" aria-hidden="true">서</div>
-                <div>
-                  <div class="name">서응교</div><div class="org">단국대학교 교수 · 공저자</div>
-                  <div class="talk">이야기 제목 <span class="tbd">곧 공개</span></div>
-                  <button class="plink" type="button" data-person="seo">프로필 보기</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="slot evening">
-          <div class="time">17:40<small>15분</small></div>
-          <div><h4>오후의 질문에 답하기</h4><p>질문 벽에서 고른 카드로 저자들과 함께 이야기해요. 2부 모더레이터 전은화(창의인재개발연구소 소장)</p></div>
+        <div class="slot">
+          <div class="time">17:05<small>30분</small></div>
+          <div><h4>탁자별 발표</h4><p>탁자마다 발표자가 논의를 정리해 다른 탁자와 나눠요.</p></div>
         </div>
 
-        <div class="slot evening">
-          <div class="time">17:55<small>5분</small></div>
-          <div><h4>오늘의 이야기상</h4><p>가장 멋진 이야기를 나눠 준 분께 작은 선물을 드리고, 다음 회차를 소개한 뒤 다 함께 사진을 남겨요. 이후에는 자유롭게 이야기와 사인을 이어가요.</p></div>
+        <div class="slot">
+          <div class="time">17:35<small>10분</small></div>
+          <div><h4>투표와 닫는 인사</h4><p>내 탁자를 뺀 나머지 가운데 가장 도움이 된 탁자에 한 표씩 투표하고, 우승 탁자에 작은 선물을 드려요. 다 함께 사진을 남기며 마무리해요.</p></div>
         </div>
 
         <dl class="hosts">
-          <div><dt>살로니에르 · 2부 기획</dt><dd>정효정</dd></div>
-          <div><dt>2부 모더레이터</dt><dd>전은화 소장</dd></div>
-          <div><dt>저자 이야기</dt><dd>김혜영 · 서응교</dd></div>
+          <div><dt>살로니에르</dt><dd>신지현 · 정효정</dd></div>
+          <div><dt>살롱 솔루션 특강</dt><dd>김혜영</dd></div>
+          <div><dt>탁자 진행</dt><dd>신지현 · 이정훈 · 정효정 · 황윤자 외</dd></div>
         </dl>
       </article>
     </div>
@@ -633,16 +607,16 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
       <div class="band-head">
         <div class="eyebrow">The People</div>
         <h2 id="people-title">오늘의 사람들</h2>
-        <p>이 살롱을 차린 두 사람, 오후에 이야기를 꺼내는 네 사람, 저녁 서재를 여는 저자들, 그리고 탁자마다 대화를 이어 주는 사람들이에요. 카드를 누르면 프로필을 볼 수 있어요.</p>
+        <p>이 살롱을 차린 두 사람, 이야기를 꺼내는 네 사람, 살롱 솔루션을 여는 사람들, 그리고 탁자마다 대화를 이어 주는 사람들이에요. 카드를 누르면 프로필을 볼 수 있어요.</p>
       </div>
       <div class="salon-hosts">
         <h3 class="grp">살롱을 차린 사람</h3>
-        <p class="sh-lead">살롱의 전통에서는 손님을 맞고 대화를 이어 가는 안주인을 '살로니에르'라고 불렀어요. 이번 살롱의 오후와 저녁을 차린 두 사람이에요.</p>
+        <p class="sh-lead">살롱의 전통에서는 손님을 맞고 대화를 이어 가는 안주인을 '살로니에르'라고 불렀어요. 이번 살롱을 함께 차린 두 사람이에요.</p>
         <div class="pgrid trio" id="pg-salon"></div>
       </div>
       <h3 class="grp">이야기를 꺼내는 사람</h3>
       <div class="pgrid" id="pg-speakers"></div>
-      <h3 class="grp">서재를 여는 사람</h3>
+      <h3 class="grp">살롱 솔루션을 여는 사람</h3>
       <div class="pgrid trio" id="pg-evening"></div>
       <h3 class="grp">대화를 잇는 사람</h3>
       <div class="pgrid trio" id="pg-hosts"></div>
@@ -654,12 +628,13 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
     <div class="wrap rt-grid">
       <div class="rt-copy">
         <div class="eyebrow">The Round Table</div>
-        <h2 id="table-title">두 탁자를 골라 앉아 보세요</h2>
-        <p>탁자는 환경 · 프로세스 · 변화관리 세 주제로 차려져요. 가장 관심 있는 두 탁자를 골라 20분씩 앉고, 탁자 위 질문 카드로 이야기를 시작해요. 카드는 AX 현장에서 지금 실제로 붙잡고 있는 고민에서 나왔어요.</p>
+        <h2 id="table-title">한 탁자에서, 한 주제를 깊이</h2>
+        <p>탁자마다 환경 · 프로세스 · 변화관리 세 주제의 질문 카드를 모두 올려 둬요. 한 탁자에 머물며 카드 하나를 골라 30분 동안 깊이 이야기하고, 발표자가 논의를 정리해 다른 탁자와 나눠요. 의자를 눌러 탁자 위 카드를 미리 만나 보세요.</p>
         <ul class="steps">
-          <li><b>16:00</b><span>첫 번째 탁자 · 20분</span></li>
-          <li><b>16:20</b><span>두 번째 탁자 · 20분</span></li>
-          <li><b>16:40</b><span>디브리프하며 서재로 · 20분</span></li>
+          <li><b>16:15</b><span>탁자 토론 · 30분</span></li>
+          <li><b>16:45</b><span>살롱 솔루션 특강 · 20분</span></li>
+          <li><b>17:05</b><span>탁자별 발표 · 30분</span></li>
+          <li><b>17:35</b><span>투표와 닫는 인사 · 10분</span></li>
         </ul>
         <div class="cardstage">
           <div class="qcard" id="qcard" aria-live="polite">
@@ -668,12 +643,12 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
           </div>
         </div>
         <div class="rt-actions">
-          <button class="btn btn-ghost btn-sm" type="button" id="again">같은 의자에서 한 장 더</button>
-          <button class="btn btn-primary btn-sm" type="button" id="sit">이 탁자에 앉고 싶어요</button>
+          <button class="btn btn-ghost btn-sm" type="button" id="again">질문 카드 한 장 더</button>
+          <button class="btn btn-primary btn-sm" type="button" id="sit">이 주제에 관심 있어요</button>
         </div>
         <p class="thanks-inline">Special thanks to <b>할리</b> · <b>휘율애비</b> · <b>누리</b>, 탁자 위 질문들을 함께 빚어 주신 분들</p>
       </div>
-      <div class="tablestage" role="group" aria-label="세 개의 의자">
+      <div class="tablestage" role="group" aria-label="세 가지 주제의 의자">
         <div class="top" aria-hidden="true"></div>
         <button class="chair env" type="button" data-deck="env" aria-pressed="true">환경<small>도구 · 지식</small></button>
         <button class="chair pro" type="button" data-deck="pro" aria-pressed="false">프로세스<small>맡김 · 검증</small></button>
@@ -688,13 +663,13 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
       <div class="envelope">
         <div>
           <div class="eyebrow" style="color:var(--ink-soft)">Invitation</div>
-          <h2 id="invite-title" style="margin-top:8px">초대장은 30장만 준비했어요</h2>
-          <p>신청서를 한 장 한 장 읽고, 이야기가 잘 섞이도록 탁자를 꾸려 초대장을 보내드려요.</p>
-          <div class="dates"><span>신청 마감 11월 15일(일)</span><span>선정 안내 11월 18일(수)</span><span>참가비 30,000원</span><span>1부 살롱 + 2부 북토크</span><span>참가자 전원 책 증정 · 박영사 협찬</span><span>가장 멋진 이야기에 선물</span></div>
+          <h2 id="invite-title" style="margin-top:8px">초대장을 받으셨나요?</h2>
+          <p>조직에서 AX를 이끌어 온 팀장급 이상 리더를 한 분 한 분 모셨어요. 참석 여부를 알려 주시면 탁자를 꾸려 자리를 준비할게요.</p>
+          <div class="dates"><span>회신 마감 11월 15일(일)</span><span>참가비 무료</span><span>참가자 전원 책 증정 · 박영사 협찬</span><span>가장 도움이 된 탁자에 작은 선물</span></div>
         </div>
         <div style="display:grid;gap:18px;justify-items:center">
           <div class="seal-sm" aria-hidden="true">AX</div>
-          <button class="btn btn-ink" type="button" data-open>초대장 신청서 열기</button>
+          <button class="btn btn-ink" type="button" data-open>참석 회신하기</button>
         </div>
       </div>
     </div>
@@ -705,7 +680,7 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
   <div class="wrap">
     <div>
       <div class="motto2">빨리 말고, 같이 오래.</div>
-      <div style="margin-top:8px">AX 살롱 심화 · 2026. 11. 28. 토 14:00 — 18:00 · 패스트파이브 삼성4호점 (서울 강남구 영동대로106길 11) <button class="footbtn" type="button" data-map>오시는 길 ↗</button></div>
+      <div style="margin-top:8px">AX 살롱 뤼미에르 · 2026. 11. 28. 토 14:00 — 17:45 · 패스트파이브 삼성4호점 (서울 강남구 영동대로106길 11) <button class="footbtn" type="button" data-map>오시는 길 ↗</button></div>
     </div>
     <div style="text-align:right">주최 창의인재개발연구소 × 다오랩 × 패스트파이브<br><span style="opacity:.8">도서 협찬 박영사</span></div>
     <div class="thanks"><span class="lab">Special thanks to</span><b>할리</b><b>휘율애비</b><b>누리</b><span>둥근 탁자의 질문을 함께 빚어 주셨어요.</span></div>
@@ -717,10 +692,10 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
   <div class="scrim" data-close></div>
   <div class="sheet">
     <div class="waxseal" aria-hidden="true">AX</div>
-    <button class="close" type="button" data-close aria-label="신청서 닫기">×</button>
-    <div class="eyebrow" style="color:var(--ink-soft);margin-top:30px">Invitation Request</div>
-    <h2 id="apply-title">초대장 신청서</h2>
-    <p class="lead">자리는 30석, 참가비는 30,000원이에요. 참가자 모두에게 『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』을 드려요(도서 협찬 박영사). 오후 2시 살롱(1부)에서 시작해 6시 북토크(2부)까지 이어져요. 신청 마감은 11월 15일(일), 선정 결과와 입금 안내는 11월 18일(수)에 메일로 드려요.</p>
+    <button class="close" type="button" data-close aria-label="회신서 닫기">×</button>
+    <div class="eyebrow" style="color:var(--ink-soft);margin-top:30px">RSVP</div>
+    <h2 id="apply-title">참석 회신</h2>
+    <p class="lead">조직에서 AX를 이끌어 본 팀장급 이상 리더를 모시는 초청 행사예요. 참가비는 없고, 참가자 모두에게 『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』을 드려요(도서 협찬 박영사). 11월 28일(토) 오후 2시부터 5시 45분까지 패스트파이브 삼성4호점에서 만나요. 회신 마감은 11월 15일(일)이에요.</p>
     <p class="draftnote"><b>시안 안내</b> · 접수 창구를 연결하기 전 시안이에요. 지금은 제출하면 확인 화면까지만 보이고, 내용은 저장되지 않아요.</p>
 
     <div class="progress" id="progressbar" aria-hidden="true"><span id="prog-txt">0 / 8</span><div class="track"><div class="fill" id="prog"></div></div><span>필수 항목</span></div>
@@ -729,58 +704,40 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
       <div class="hp" aria-hidden="true"><label for="f-web">웹사이트</label><input id="f-web" name="website" type="text" tabindex="-1" autocomplete="off"></div>
       <fieldset>
         <legend>기본 정보</legend>
-        <p class="legend-sub">결과와 입금 안내를 이 메일로 보내요.</p>
+        <p class="legend-sub">행사 안내를 이 메일과 연락처로 보내드려요.</p>
         <div class="two-col">
-          <div class="field" data-req><label for="f-name">이름<span class="req">*</span></label><input id="f-name" name="name" type="text" autocomplete="name"><div class="err"></div></div>
-          <div class="field" data-req><label for="f-phone">연락처<span class="req">*</span></label><input id="f-phone" name="phone" type="tel" inputmode="tel" placeholder="010-0000-0000" autocomplete="tel"><div class="err"></div></div>
+          <div class="field" data-req><label for="f-name">성함<span class="req">*</span></label><input id="f-name" name="name" type="text" autocomplete="name"><div class="err"></div></div>
+          <div class="field" data-req><label for="f-phone">연락처(휴대폰)<span class="req">*</span></label><input id="f-phone" name="phone" type="tel" inputmode="tel" placeholder="010-0000-0000" autocomplete="tel"><div class="err"></div></div>
         </div>
-        <div class="field" data-req><label for="f-email">이메일<span class="req">*</span></label><div class="hint">회사 이메일이면 소속 확인이 빨라요.</div><input id="f-email" name="email" type="email" autocomplete="email"><div class="err"></div></div>
-        <div class="field" data-req><label for="f-role">하는 일<span class="req">*</span></label><div class="hint">직무와 소속(선택)을 적어 주세요.</div><input id="f-role" name="role" type="text" placeholder="예: 마케터, OO스타트업"><div class="err"></div></div>
         <div class="two-col">
-          <div class="field" data-req><label for="f-org">조직 유형<span class="req">*</span></label>
-            <select id="f-org" name="orgType"><option value="">선택해 주세요</option><option>대기업</option><option>중견·중소기업</option><option>스타트업</option><option>공공기관·비영리</option><option>대학·연구기관</option><option>프리랜서·솔로프리너</option><option>기타</option></select><div class="err"></div></div>
-          <div class="field" data-req><label for="f-stage">AI 활용 단계<span class="req">*</span></label>
-            <select id="f-stage" name="stage"><option value="">선택해 주세요</option><option>개인 업무에 AI를 쓰고 있어요</option><option>바이브코딩으로 결과물을 만들어요</option><option>에이전트를 만들어 운영해요</option><option>팀·조직 단위로 퍼뜨리고 있어요</option><option>조직의 AX를 기획하고 이끌어요</option></select><div class="err"></div></div>
+          <div class="field" data-req><label for="f-company">회사명<span class="req">*</span></label><input id="f-company" name="company" type="text" autocomplete="organization"><div class="err"></div></div>
+          <div class="field" data-req><label for="f-title">직함<span class="req">*</span></label><input id="f-title" name="title" type="text" autocomplete="organization-title" placeholder="예: AX추진팀장"><div class="err"></div></div>
         </div>
+        <div class="field" data-req><label for="f-email">이메일 주소<span class="req">*</span></label><input id="f-email" name="email" type="email" autocomplete="email"><div class="err"></div></div>
       </fieldset>
 
       <fieldset>
-        <legend>AI 경험</legend>
-        <p class="legend-sub">선정할 때 가장 중요하게 보는 칸이에요.</p>
-        <div class="field" data-req><label for="f-exp">AI로 해 본 것 중에 나누고 싶은 경험<span class="req">*</span></label><div class="hint">무엇을 해 봤고, 무엇이 바뀌었거나 어디서 막혔는지 적어 주세요.</div><textarea id="f-exp" name="experience"></textarea><div class="err"></div></div>
-        <div class="field"><label for="f-q">요즘 AI로 풀고 싶은 문제나 궁금한 점</label><textarea id="f-q" name="question" style="min-height:96px"></textarea></div>
-        <div class="field"><span class="lab" id="seat-lab">관심 있는 탁자 (두 곳까지)</span><div class="hint">라운드테이블에서 고른 두 탁자에 20분씩 앉아요. 탁자를 꾸릴 때 참고해요.</div>
+        <legend>AX 경험</legend>
+        <p class="legend-sub">탁자를 꾸릴 때 참고해요.</p>
+        <div class="field" data-req><label for="f-role">조직에서 AI·AX와 관련해 맡고 계신 일<span class="req">*</span></label><input id="f-role" name="role" type="text" placeholder="예: 전사 AX 추진 리드, HR 부문 AI 도입 총괄"><div class="err"></div></div>
+        <div class="field" data-req><label for="f-exp">어떤 경험을 해 오셨나요<span class="req">*</span></label><div class="hint">무엇을 해 봤고, 무엇이 바뀌었거나 어디서 막혔는지 두세 문장이면 충분해요.</div><textarea id="f-exp" name="experience"></textarea><div class="err"></div></div>
+        <div class="field"><span class="lab" id="seat-lab">관심 주제 (여러 개 골라도 돼요)</span><div class="hint">당일 탁자에서 함께 고를 토론 주제예요.</div>
           <div class="chips" role="group" aria-labelledby="seat-lab">
             <input type="checkbox" name="seat" id="s-env" value="환경"><label for="s-env">환경 · 도구와 지식</label>
             <input type="checkbox" name="seat" id="s-pro" value="프로세스"><label for="s-pro">프로세스 · 맡김과 검증</label>
             <input type="checkbox" name="seat" id="s-chg" value="변화관리"><label for="s-chg">변화관리 · 사람과 역할</label>
           </div></div>
-        <div class="field"><label for="f-meet">이번 살롱에서 만나고 싶은 사람</label><div class="hint">테이블 구성에 참고해요.</div><input id="f-meet" name="meet" type="text" placeholder="예: 팀에 AI를 도입해 본 HR 담당자"></div>
       </fieldset>
 
       <fieldset>
-        <legend>마지막으로</legend>
-        <div class="field"><span class="lab" id="p2-lab">2부 북토크(17:00–18:00)도 함께하시나요?</span><div class="hint">저녁 다과와 책 전달을 준비하는 데 참고해요. 1부만 참석해도 책은 드려요.</div>
-          <div class="chips" role="radiogroup" aria-labelledby="p2-lab">
-            <input type="radio" name="part2" id="p2-y" value="참석"><label for="p2-y">함께해요</label>
-            <input type="radio" name="part2" id="p2-n" value="1부만"><label for="p2-n">1부만 참석해요</label>
-          </div></div>
-        <div class="two-col">
-          <div class="field"><label for="f-src">AX 살롱을 어떻게 알게 되었나요?</label>
-            <select id="f-src" name="source"><option value="">선택해 주세요</option><option>다오랩</option><option>창의인재개발연구소</option><option>연사 소개</option><option>지인 추천</option><option>SNS</option><option>기타</option></select></div>
-          <div class="field"><span class="lab" id="talk-lab">다음 회차에 내 사례를 나눌 의향</span>
-            <div class="chips" role="radiogroup" aria-labelledby="talk-lab">
-              <input type="radio" name="talk" id="t-y" value="있음"><label for="t-y">있어요</label>
-              <input type="radio" name="talk" id="t-m" value="고민 중"><label for="t-m">고민 중</label>
-              <input type="radio" name="talk" id="t-n" value="없음"><label for="t-n">아직은요</label>
-            </div></div>
-        </div>
-        <div class="field" data-req><label class="check" for="f-agree"><input id="f-agree" name="agree" type="checkbox"><span><b>[필수]</b> 개인정보 수집·이용에 동의합니다. 이름, 이메일, 연락처, 신청 내용은 참가자 선정과 행사 안내에만 쓰고, 행사가 끝난 뒤 3개월 안에 파기합니다.</span></label><div class="err"></div></div>
-        <label class="check" for="f-photo"><input id="f-photo" name="photo" type="checkbox"><span><b>[선택]</b> 현장 사진·영상 촬영과 AX 살롱 기록용 활용에 동의합니다.</span></label>
+        <legend>연락처 공유</legend>
+        <p class="legend-sub">AX 살롱 참여자끼리 행사 뒤에도 연락하고 교류하실 수 있도록, 참여자들께 연락처를 공유할 예정이에요. 공유를 원치 않으시면 아래에 체크해 주세요. 단, 본인의 연락처를 공유하지 않으시면 다른 참여자의 연락처도 받을 수 없고, 참여에 제약이 있을 수 있어요.</p>
+        <label class="check" for="f-noshare"><input id="f-noshare" name="noShare" type="checkbox"><span>연락처 공유를 원하지 않아요</span></label>
+        <div class="field" data-req style="margin-top:14px"><label class="check" for="f-agree"><input id="f-agree" name="agree" type="checkbox"><span><b>[필수]</b> 개인정보 수집·이용에 동의합니다. 성함, 회사명, 직함, 연락처, 이메일, 회신 내용은 행사 운영과 안내, 참여자 간 연락처 공유(원하지 않으시면 제외)에만 쓰고, 주최 측 보관분은 행사가 끝난 뒤 3개월 안에 파기합니다.</span></label><div class="err"></div></div>
       </fieldset>
 
       <div class="submit-row">
-        <button class="btn btn-ink" type="submit">신청서 보내기</button>
+        <button class="btn btn-ink" type="submit">회신 보내기</button>
         <div class="formerr" id="formerr" role="alert"></div>
       </div>
     </form>
@@ -788,11 +745,11 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
     <div class="done" id="done" hidden>
       <div class="bigseal" aria-hidden="true">AX</div>
       <h3 id="done-title">자리를 준비할게요</h3>
-      <p>신청서를 읽고 11월 18일(수)에 선정 결과와 입금 안내를 메일로 전해드려요. 그때까지 질문 하나를 품고 계셔도 좋아요.</p>
+      <p>회신 고맙습니다. 행사 전에 자세한 안내를 메일로 보내드려요. 그때까지 질문 하나를 품고 계셔도 좋아요.</p>
       <div class="summary" id="summary"></div>
       <p class="draftnote" style="text-align:left">시안이라 아직 접수되지 않았어요. 접수 창구가 연결되면 이 화면이 실제 접수 확인으로 바뀌어요.</p>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
-        <button class="btn btn-sm" type="button" id="edit" style="background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)">신청서 다시 보기</button>
+        <button class="btn btn-sm" type="button" id="edit" style="background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)">회신 다시 보기</button>
         <button class="btn btn-sm btn-ink" type="button" data-close style="padding:9px 16px;font-size:14px">닫기</button>
       </div>
     </div>
@@ -809,7 +766,7 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
     <dl class="addr">
       <dt>장소</dt><dd>패스트파이브 삼성4호점</dd>
       <dt>주소</dt><dd><span id="addr-text">서울 강남구 영동대로106길 11</span><button class="copy" type="button" id="copy-addr">주소 복사</button></dd>
-      <dt>일시</dt><dd>2026. 11. 28. 토 14:00 — 18:00</dd>
+      <dt>일시</dt><dd>2026. 11. 28. 토 14:00 — 17:45</dd>
     </dl>
     <div class="maplinks">
       <a class="btn btn-map" href="https://www.google.com/maps/search/?api=1&amp;query=%ED%8C%A8%EC%8A%A4%ED%8A%B8%ED%8C%8C%EC%9D%B4%EB%B8%8C%20%EC%82%BC%EC%84%B14%ED%98%B8%EC%A0%90%20%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EC%98%81%EB%8F%99%EB%8C%80%EB%A1%9C106%EA%B8%B8%2011" target="_blank" rel="noopener">구글 지도에서 보기 ↗</a>
@@ -895,19 +852,19 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
 
   /* --- question cards --- */
   const DECKS = {
-    env: { name: '환경 탁자', time: '도구와 지식 · 20분', color: '#182C88', seat: 's-env', cards: [
+    env: { name: '환경 탁자', time: '도구와 지식', color: '#182C88', seat: 's-env', cards: [
       ["E-1", "개인의 활용에서 팀의 자산으로", "한 사람의 AI 활용이 팀 전체의 일하는 방식으로 확산된 경우와, 그 사람에게만 머문 경우를 떠올려 보세요. 두 경우를 가른 결정적 차이는 무엇이었나요?", "AI를 능숙하게 쓰는 한 사람의 방법이 팀에 공유되지 않아, 그 사람이 자리를 비우면 업무가 멈춘다."],
       ["E-2", "작은 성공을 나누게 하려면", "구성원이 '별것 아니다'라며 공유하지 않는 작은 성공을 끌어내기 위해 시도해 본 방법(자리·채널·질문 방식)이 있나요? 효과는 어땠나요?", "사내 공유회를 열어도 늘 같은 몇 사람만 발표하고, 대다수는 듣기만 한다."],
       ["E-3", "이미 있는 것을 다시 쓰게", "누군가 이미 만든 AI 도구나 프롬프트를 먼저 찾아보고 재사용하게 하려면 무엇이 필요할까요?", "세 팀이 각자 비슷한 회의록 요약 도구를 만들었지만, 서로의 존재를 알지 못했다."],
       ["E-4", "전면 개방과 선택 집중", "전 직원에게 AI 도구를 열어 각자 활용하게 하는 방식과, 조직이 핵심 업무를 골라 에이전트로 구현하는 방식 가운데 우리는 어느 쪽에 가까웠나요? 그 선택으로 무엇을 얻고 무엇을 놓쳤나요?", "전사에 AI 계정을 일괄 배포한 뒤 사용률은 높아졌지만, 핵심 업무의 방식은 거의 달라지지 않았다."],
       ["E-5", "암묵지를 지식으로", "구성원의 시간을 크게 빼앗지 않으면서, 조직의 일하는 방식과 판단 기준을 AI가 이해하고 활용할 수 있는 지식으로 정리해 본 경험이 있나요?", "지식을 모으려고 현업 인터뷰를 요청했더니 \"바쁜데 또요?\"라는 반응이 돌아왔다."] ] },
-    pro: { name: '프로세스 탁자', time: '맡김과 검증 · 20분', color: '#E2522F', seat: 's-pro', cards: [
+    pro: { name: '프로세스 탁자', time: '맡김과 검증', color: '#E2522F', seat: 's-pro', cards: [
       ["P-1", "어디부터 맡길까", "업무를 AI에게 넘길 때 어디부터 분리했나요? 처음 맡긴 일과, 맡겼다가 다시 사람에게 돌린 일은 무엇이었나요?", "보고서 초안은 순조롭게 맡겼지만, 고객 안내 문구를 맡겼다가 큰 오류로 이어질 뻔했다."],
       ["P-2", "좋은 결과의 기준", "AI가 만든 결과물은 누가, 어떤 기준으로 검토하나요? '이 정도면 좋다'는 기준을 명시적으로 정해 본 적이 있나요?", "팀마다 좋은 결과물의 기준이 다르다. 어떤 팀은 속도를, 어떤 팀은 정확성을, 어떤 팀은 참신함을 본다."],
       ["P-3", "맡김과 방임 사이", "어디까지 AI에게 맡기고, 어느 지점에서 사람이 개입하나요? 그 경계를 개인의 주의력이 아니라 구조(가드레일·검수 단계)로 설계해 본 적이 있나요?", "AI에 자율을 주었다가 불안해져, 다시 '실행 전에 한 번은 확인받는' 방식으로 돌아갔다."],
       ["P-4", "성과를 무엇으로 말할까", "AX의 성과를 무엇으로 측정하고 있나요? 절감한 시간이나 사용량 외에, 경영진을 설득한 근거는 무엇이었나요?", "자동화한 업무 건수를 보고했더니, 경영진이 \"그래서 무엇이 나아졌느냐\"고 되물었다."],
       ["P-5", "추진 여부는 누가 판단하나", "AI 과제의 추진 여부를 판단하는 창구와 기준이 있나요? 도입 이후의 운영 부담은 언제, 어떻게 검토하나요?", "도입 초기라 구성원들이 어떤 도구가 있는지, 누구에게 묻고 어디서 승인받아야 하는지 알지 못한다."] ] },
-    chg: { name: '변화관리 탁자', time: '사람과 역할 · 20분', color: '#2E5C4F', seat: 's-chg', cards: [
+    chg: { name: '변화관리 탁자', time: '사람과 역할', color: '#2E5C4F', seat: 's-chg', cards: [
       ["C-1", "가장 큰 불안", "'내 일이 사라질까', '나만 뒤처질까', '서툰 모습이 드러날까', '평가에서 불리할까' 가운데 우리 조직에서 가장 두드러진 불안은 무엇이며, 어떻게 알아차렸나요?", "교육 만족도는 높은데, 실무에서는 AI를 활용했다는 사실을 드러내지 않는다."],
       ["C-2", "실패를 학습으로", "AI 실험이 실패했을 때 그것이 비난이 아닌 학습으로 남도록 어떤 말과 행동, 구조를 마련했나요? 반대로 실패가 덮인 경험이 있다면 무엇이 달랐나요?", "파일럿이 실패한 뒤로 다음 과제에 선뜻 나서는 사람이 없다."],
       ["C-3", "참여를 이끈 것", "사내 교육이나 AI 챔피언 제도 가운데 실제로 구성원의 참여를 이끈 것은 무엇이었나요? 공식 보상이 충분하지 않을 때, 챔피언에게 무엇을 줄 수 있을까요?", "AI 챔피언에게 줄 수 있는 공식 보상이 연말 시상 하나뿐이다."],
@@ -943,28 +900,28 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
   /* --- people (photo: a data: URI when one is provided; until then a monogram) --- */
   const PEOPLE = {
     joo:  { name: '주효진', role: '세션 1 · 연사', org: '前 아모레퍼시픽 AX 담당', c: 'var(--arch)', photo: '',
-            talk: ['내 머리 꼭대기에 있는 AI와, 나는 어떻게 일하고 있을까?', '거친 생각과 불안한 눈빛으로 AI와 함께 버틴 현업 마케터, 그리고 세일즈팀이 콘텐츠를 직접 만들게 된 이야기'],
+            talk: ['내 머리 꼭대기에 있는 AI와 일하는 현업 POV', '거친 생각과 불안한 눈빛으로 AI와 함께 버틴 현업 마케터, 그리고 세일즈팀이 콘텐츠를 직접 만들게 된 이야기'],
             bio: ['브랜드 컨설팅과 대기업 마케팅에서 14년간 일해 온 마케터', '아모레퍼시픽 디지털전략팀에서 마케팅 부문 AX를 이끌었어요', '지금은 AI 에이전트와 함께 일하며 퇴근 시간을 앞당기는 중이에요'] },
-    song: { name: '송인혁', role: '세션 1 · 연사', org: '유니크굿컴퍼니 대표', c: 'var(--arch)', photo: 'assets/people/song.jpg',
-            talk: ['지옥까지 갔던 회사는 어떻게 10배로 자랐을까?', "60명 오프라인 게임 회사가 '부서별 사장님'이 일하는 나노벤처로 다시 태어난 이야기"],
+    song: { name: '송인혁', role: '세션 2 · 연사', org: '유니크굿컴퍼니 대표', c: 'var(--arch)', photo: 'assets/people/song.jpg',
+            talk: ['지옥까지 갔다가 나노벤처로 10X 성장한 생존기', "60명 오프라인 게임 회사가 '부서별 사장님'이 일하는 나노벤처로 다시 태어난 이야기"],
             bio: ['오프라인 체험 게임 플랫폼 리얼월드를 만드는 유니크굿컴퍼니 대표', '위기에 놓였던 60명 규모 회사를 AI로 일하는 조직으로 다시 세웠어요', '최근 나노벤처에 관한 책을 펴냈어요'] },
-    yoo:  { name: '유창우', role: '세션 2 · 연사', org: 'LG CNS', c: 'var(--table)', photo: 'assets/people/yoo.jpg',
-            talk: ['AX가 굴러가려면, 누가 무엇을 정해야 할까?', '현장에서 보고 듣고 느낀, AX를 굴러가게 하는 거버넌스에 대한 이야기'],
+    yoo:  { name: '유창우', role: '세션 1 · 연사', org: 'LG CNS', c: 'var(--table)', photo: 'assets/people/yoo.jpg',
+            talk: ['AX를 위해 꼭 필요한 것들: 거버넌스 중심', '현장에서 보고 듣고 느낀, AX를 굴러가게 하는 거버넌스에 대한 이야기'],
             bio: ['LG CNS에서 ESG 도메인을 맡고 있는 ESG 큐레이터', 'AX 조직에 몸담고 올해 AX 과제를 직접 수행했어요', 'LG에서 CSR 업무를 맡았어요'] },
     choi: { name: '최환희', role: '세션 2 · 연사', org: 'Fontys 응용과학대학 교수', c: 'var(--table)', photo: 'assets/people/choi.jpg',
             talk: ['AI가 일을 가져가면, 우리 손에는 무엇이 남을까?', 'HR에서 시작해 전사로 번지는 AX, 그리고 리더십에 대한 이야기'],
             bio: ['Fontys 응용과학대학 국제경영 전공에서 인적자원관리(HRM)와 비즈니스 리서치를 가르쳐요', "Fontys '올해의 교수' 후보에 2년 연속 이름을 올렸어요", '글로벌 HR 현장의 AX 흐름을 국내 기업 워크숍으로 전하고 있어요'] },
-    kim:  { name: '김혜영', role: '사회 · 2부 저자 이야기', org: '단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/kim.jpg', bio: ['『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 공저자'] },
-    shin: { name: '신지현', role: '살로니에르 · 1부 모더레이터', org: '서스틴브릿지 대표', c: 'var(--ochre)', photo: 'assets/people/shin.jpg',
-            host: ['Salonnière · 1부 오후의 응접실', '오후의 응접실을 차렸어요. 연사의 이야기가 둥근 탁자의 대화로 이어지도록 1부의 흐름을 설계하고 이끌어요.', ['1부 모더레이터', '라운드테이블 모더레이터']],
+    kim:  { name: '김혜영', role: '살롱 솔루션 특강', org: '단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/kim.jpg',
+            talk: ['살롱의 대화를 조직의 일로: 코크리에이션으로 여는 AX 내재화', '오늘 탁자에서 나온 이야기를 조직 안에서 이어 가는, 디자인 씽킹과 코크리에이션의 방법'], bio: ['『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 공저자'] },
+    shin: { name: '신지현', role: '살로니에르 · 세션 진행', org: '서스틴브릿지 대표', c: 'var(--ochre)', photo: 'assets/people/shin.jpg',
+            host: ['Salonnière', '살롱을 함께 차렸어요. 연사의 이야기가 둥근 탁자의 대화로 이어지도록 살롱의 흐름을 설계하고 이끌어요.', ['세션 진행', '탁자 진행']],
             bio: ['미래의 일과 조직을 연구하고 실험하는 비영리 커뮤니티 다오랩에서 AX 살롱을 기획해요', 'IBM에서 CSR과 연사 프로그램을 맡아 사람과 이야기를 이어 왔어요'] },
-    jung: { name: '정효정', role: '살로니에르 · 2부 북토크 기획', org: '단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/jung.jpg',
-            host: ['Salonnière · 2부 저녁의 서재', '저녁의 서재를 차렸어요. 오후에 남은 질문이 저자들과의 대화로 이어지도록 2부 북토크를 기획했어요.', ['2부 북토크 기획', '라운드테이블 모더레이터', '공저자']],
+    jung: { name: '정효정', role: '살로니에르 · 살롱 솔루션 기획', org: '단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/jung.jpg',
+            host: ['Salonnière', '살롱을 함께 차렸어요. 탁자의 대화가 조직의 실천으로 이어지도록 살롱 솔루션 세션을 기획했어요.', ['살롱 솔루션 기획', '탁자 진행', '공저자']],
             bio: ['교육혁신원 교수학습개발센터장으로 대학의 AX 대응과 교원·학생의 JX를 지원해요', '창의인재개발연구소에서 인재양성의 미래 아젠다를 제안하고 사람을 연결해요', '바이오헬스·글로벌K-컬처 융합전공을 운영해요', '『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 공저자'] },
-    jeon: { name: '전은화', role: '2부 북토크 모더레이터', org: '창의인재개발연구소 소장 · 단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/jeon.jpg', bio: ['『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 공저자'] },
-    seo:  { name: '서응교', role: '2부 저자 이야기', org: '단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/seo.jpg', bio: ['『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 공저자'] },
-    hwang:{ name: '황윤자', role: '테이블 모더레이터', org: '단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/hwang.jpg', bio: [] },
-    lee:  { name: '이정훈', role: '테이블 모더레이터', org: '단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/lee.jpg', bio: [] }
+    jeon: { name: '전은화', role: '살롱 솔루션 진행', org: '창의인재개발연구소 소장 · 단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/jeon.jpg', bio: ['『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 공저자'] },
+    hwang:{ name: '황윤자', role: '탁자 진행', org: '단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/hwang.jpg', bio: [] },
+    lee:  { name: '이정훈', role: '탁자 진행', org: '단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/lee.jpg', bio: [] }
   };
   const photoHTML = p => p.photo ? `<img src="${p.photo}" alt="${esc(p.name)} 사진">` : esc(p.name.slice(0, 1));
   function cardHTML(id) {
@@ -974,8 +931,8 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
       ${p.talk ? `<div class="pb">${esc(p.talk[0])}</div>` : p.bio.length ? `<div class="pb">${esc(p.bio[0])}</div>` : ''}
       <div class="more">프로필 보기 →</div></div></button>`;
   }
-  document.getElementById('pg-speakers').innerHTML = ['joo', 'song', 'yoo', 'choi'].map(cardHTML).join('');
-  document.getElementById('pg-evening').innerHTML = ['jeon', 'seo', 'kim'].map(cardHTML).join('');
+  document.getElementById('pg-speakers').innerHTML = ['joo', 'yoo', 'song', 'choi'].map(cardHTML).join('');
+  document.getElementById('pg-evening').innerHTML = ['jeon', 'kim'].map(cardHTML).join('');
   function hostHTML(id) {
     const p = PEOPLE[id];
     return `<button class="pcard host" type="button" data-person="${id}"><div class="photo" style="--c:${p.c}" aria-hidden="true">${photoHTML(p)}</div>
@@ -1045,11 +1002,11 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
   const form = document.getElementById('apply-form');
   const reqFields = [...form.querySelectorAll('[data-req]')];
   const prog = document.getElementById('prog'), progTxt = document.getElementById('prog-txt');
-  const KEY = 'ax-salon-deep-draft';
+  const KEY = 'ax-salon-rsvp-draft';
   const valOf = f => { const el = f.querySelector('input,select,textarea'); return el.type === 'checkbox' ? el.checked : el.value.trim(); };
   function check(f) {
     const el = f.querySelector('input,select,textarea'), v = valOf(f); let m = '';
-    if (!v) m = el.type === 'checkbox' ? '동의해야 신청할 수 있어요.' : '이 칸을 채워 주세요.';
+    if (!v) m = el.type === 'checkbox' ? '동의해야 회신할 수 있어요.' : '이 칸을 채워 주세요.';
     else if (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) m = '이메일 주소 형식을 확인해 주세요. 예: name@company.com';
     else if (el.type === 'tel' && v.replace(/\D/g, '').length < 9) m = '연락처 숫자를 확인해 주세요. 예: 010-1234-5678';
     else if (el.id === 'f-exp' && v.length < 20) m = '두세 문장이면 충분해요. 조금만 더 적어 주세요.';
@@ -1062,11 +1019,11 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
     prog.style.width = (ok / reqFields.length * 100) + '%'; progTxt.textContent = ok + ' / ' + reqFields.length;
   }
   const seatBoxes = [...form.querySelectorAll('input[name="seat"]')];
-  function syncSeat() { const n = seatBoxes.filter(b => b.checked).length; seatBoxes.forEach(b => b.disabled = !b.checked && n >= 2); }
+  function syncSeat() { const n = seatBoxes.filter(b => b.checked).length; seatBoxes.forEach(b => b.disabled = !b.checked && n >= 3); }
   seatBoxes.forEach(b => b.addEventListener('change', syncSeat));
   function collect() { const fd = new FormData(form), o = Object.fromEntries(fd); o.seat = fd.getAll('seat').join(', '); return o; }
   function save() {
-    try { const data = collect(); data.agree = form.agree.checked; data.photo = form.photo.checked; localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+    try { const data = collect(); data.agree = form.agree.checked; data.noShare = form.noShare.checked; localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
   }
   try {
     const d = JSON.parse(localStorage.getItem(KEY) || 'null');
@@ -1096,19 +1053,19 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
     formerr.textContent = '';
     const v = collect();
     if (ENDPOINT && !v.website) {
-      const payload = { ...v, agree: form.agree.checked, photo: form.photo.checked, submittedAt: new Date().toISOString(), page: location.href };
+      const payload = { ...v, agree: form.agree.checked, shareContact: !form.noShare.checked, submittedAt: new Date().toISOString(), page: location.href };
       delete payload.website;
       form.dataset.sending = '1'; sendBtn.disabled = true; sendBtn.textContent = '보내는 중…';
       try {
         await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
       } catch (err) {
-        formerr.textContent = '신청서가 전송되지 않았어요. 인터넷 연결을 확인하고 한 번 더 보내 주세요.' + (CFG.contactEmail ? ` 계속 안 되면 메일로 알려 주세요: ${CFG.contactEmail}` : '');
+        formerr.textContent = '회신이 전송되지 않았어요. 인터넷 연결을 확인하고 한 번 더 보내 주세요.' + (CFG.contactEmail ? ` 계속 안 되면 메일로 알려 주세요: ${CFG.contactEmail}` : '');
         return;
-      } finally { delete form.dataset.sending; sendBtn.disabled = false; sendBtn.textContent = '신청서 보내기'; }
+      } finally { delete form.dataset.sending; sendBtn.disabled = false; sendBtn.textContent = '회신 보내기'; }
       try { localStorage.removeItem(KEY); } catch (_) {}
     }
     document.getElementById('done-title').textContent = `${v.name}님의 자리를 준비할게요`;
-    const rows = [['하는 일', v.role], ['AI 활용 단계', v.stage], ['관심 있는 탁자', v.seat || '정하지 않음'], ['2부 북토크', v.part2 === '1부만' ? '1부만 참석' : v.part2 ? '함께해요' : '정하지 않음'], ['나누고 싶은 경험', v.experience.length > 80 ? v.experience.slice(0, 80) + '…' : v.experience]];
+    const rows = [['회사 · 직함', `${v.company} · ${v.title}`], ['맡고 계신 일', v.role], ['관심 주제', v.seat || '정하지 않음'], ['연락처 공유', form.noShare.checked ? '공유하지 않음' : '공유'], ['경험', v.experience.length > 80 ? v.experience.slice(0, 80) + '…' : v.experience]];
     document.getElementById('summary').innerHTML = rows.map(([k, x]) => `<div><b>${k}</b> · ${esc(x)}</div>`).join('');
     form.hidden = true; bar.hidden = true; done.hidden = false; invite.scrollTop = 0;
   });

@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>둥근 탁자 · AX 살롱 뤼미에르</title>
+<meta name="theme-color" content="#2A1120">
+<link rel="icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="live.css">
+<style>
+.seat-lab { margin: 26px 0 10px; font-size: 14px; color: var(--cream-dim); }
+.tabs { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 54px); z-index: 25; background: color-mix(in srgb, var(--wall) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid color-mix(in srgb, var(--cream) 12%, transparent); }
+.tabs .wrap { display: flex; gap: 6px; overflow-x: auto; padding-block: 8px; scrollbar-width: none; }
+.tabs a { flex: none; text-decoration: none; padding: 7px 14px; border-radius: 999px; font-size: 14.5px; font-weight: 600; color: var(--cream-dim); }
+.tabs a.on { background: var(--cream); color: var(--ink); }
+section.blk { padding: 64px 0 56px; }
+section.blk > .wrap > h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px; }
+section.blk > .wrap > .lead { margin: 0 0 24px; color: var(--cream-dim); max-width: 640px; }
+
+.deckgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+.deck-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+.chosen { margin-top: 26px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; background: var(--wall-2); border-radius: 16px; padding: 14px 18px; }
+.chosen .id { font: 800 26px/1 var(--display); color: var(--ochre); }
+.chosen b { font-family: var(--display); font-size: 18px; }
+details.all { margin-top: 18px; }
+details.all summary { cursor: pointer; color: var(--cream-dim); font-size: 14.5px; }
+.cardlist { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-top: 14px; }
+.cardlist button { text-align: left; border: 0; cursor: pointer; border-radius: 12px; padding: 12px 14px; background: var(--wall-2); color: var(--cream); font: 500 14.5px/1.45 var(--body); border-left: 5px solid var(--c); }
+.cardlist button b { display: block; font: 700 12.5px/1 var(--display); color: var(--cream-dim); margin-bottom: 5px; }
+
+/* candle timer */
+.timer { margin-top: 34px; display: grid; grid-template-columns: 150px 1fr; gap: 28px; align-items: center; }
+.candle { position: relative; height: 230px; display: flex; align-items: flex-end; justify-content: center; }
+.candle .holder { position: absolute; bottom: 0; width: 120px; height: 16px; border-radius: 50%; background: var(--ochre); box-shadow: 0 6px 0 #9C7322; }
+.candle .wax { position: relative; width: 46px; height: calc(var(--h, 1) * 180px + 8px); margin-bottom: 10px; background: linear-gradient(90deg, #EADBB8, var(--paper) 40%, #E2D0A8); border-radius: 6px 6px 3px 3px; transition: height 1s linear; }
+.candle .wick { position: absolute; left: 50%; top: -9px; width: 2px; height: 10px; background: var(--ink); transform: translateX(-50%); }
+.candle .flame { position: absolute; left: 50%; top: -40px; width: 18px; height: 32px; transform: translateX(-50%); border-radius: 50% 50% 45% 45% / 62% 62% 38% 38%; background: radial-gradient(ellipse at 50% 70%, #FFF3C4, var(--ochre) 55%, var(--arch)); box-shadow: 0 0 26px 8px color-mix(in srgb, var(--ochre) 45%, transparent); transform-origin: 50% 90%; animation: flick 2.4s ease-in-out infinite; transition: opacity .6s; }
+.candle.idle .flame { animation: none; opacity: .35; }
+.candle.out .flame { opacity: 0; }
+@keyframes flick { 0%,100% { transform: translateX(-50%) rotate(-2deg) scaleY(1); } 50% { transform: translateX(-50%) rotate(2deg) scaleY(1.07); } }
+.clock { font: 800 clamp(44px, 7vw, 64px)/1 var(--display); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.flow { list-style: none; padding: 0; margin: 14px 0 16px; display: grid; gap: 6px; }
+.flow li { display: grid; grid-template-columns: 64px 1fr; gap: 10px; font-size: 15px; color: var(--cream-dim); padding: 6px 10px; border-radius: 10px; }
+.flow li span { font-variant-numeric: tabular-nums; font-size: 13px; }
+.flow li.on { background: var(--wall-3); color: var(--cream); font-weight: 600; }
+.flow li.done { opacity: .5; text-decoration: line-through; text-decoration-thickness: 1px; }
+
+.askai { margin-top: 64px; }
+.askai .row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
+.askai textarea { min-height: 70px; }
+.askai .ai-note { margin-top: 14px; }
+
+/* record */
+.recgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.drop { display: grid; place-items: center; text-align: center; min-height: 180px; border: 2px dashed color-mix(in srgb, var(--ink) 35%, transparent); border-radius: 14px; padding: 18px; cursor: pointer; background: #FFFAF0; color: var(--ink-soft); }
+.drop:focus-within { outline: 2px solid var(--ochre); outline-offset: 3px; }
+.drop b { color: var(--ink); display: block; font-size: 16px; }
+.drop img { max-height: 320px; max-width: 100%; border-radius: 8px; }
+.formrow { display: grid; gap: 16px; }
+.draftbox { margin-top: 22px; display: grid; gap: 14px; padding-top: 20px; border-top: 1.5px dashed color-mix(in srgb, var(--ink) 30%, transparent); }
+.current { display: flex; gap: 14px; align-items: center; margin-top: 16px; font-size: 14.5px; color: var(--ink-soft); }
+.current img { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; }
+.check { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: start; font-size: 14.5px; }
+.check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--ink); }
+
+/* guestbook */
+.gb { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 30px; align-items: start; }
+.rate { display: flex; gap: 10px; }
+.rate button { border: 0; background: none; padding: 4px; cursor: pointer; }
+.rate .lamp { width: 26px; height: 34px; background: color-mix(in srgb, var(--ink) 14%, transparent); }
+.rate .lamp.on { background: var(--ochre); box-shadow: 0 0 14px 3px color-mix(in srgb, var(--ochre) 55%, transparent); }
+.ratelbl { font-size: 13.5px; color: var(--ink-soft); min-height: 1.4em; }
+
+/* vote */
+.vstate { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--wall-3); }
+.vstate.open { background: var(--arch); }
+.choices { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 18px; }
+.choice { text-align: left; border: 0; cursor: pointer; background: var(--wall-2); color: var(--cream); border-radius: 16px; padding: 12px; display: grid; gap: 8px; font: inherit; box-shadow: inset 0 0 0 1.5px transparent; transition: box-shadow .2s, background .2s; }
+.choice .ph { aspect-ratio: 4 / 3; border-radius: 10px; background: var(--wall-3) center / cover no-repeat; }
+.choice b { font: 800 22px/1 var(--display); }
+.choice span { font-size: 13.5px; color: var(--cream-dim); }
+.choice[aria-pressed="true"] { background: var(--wall-3); box-shadow: inset 0 0 0 2.5px var(--ochre); }
+
+@media (max-width: 760px) {
+  .deckgrid, .recgrid, .gb { grid-template-columns: 1fr; }
+  .timer { grid-template-columns: 96px 1fr; gap: 18px; }
+  .candle { height: 170px; }
+  .candle .holder { width: 84px; }
+  .candle .wax { width: 34px; height: calc(var(--h, 1) * 124px + 8px); }
+  .askai .row { grid-template-columns: 1fr; }
+  .tabs { top: calc(env(safe-area-inset-top, 0px) + 50px); }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="./">AX 살롱<em>뤼미에르</em></a>
+    <nav class="nav" aria-label="현장 페이지"><a href="program.html">순서지</a><a href="table.html" aria-current="page">탁자</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero2">
+    <div>
+      <div class="eyebrow">The Round Table · 11.28 Sat</div>
+      <h1 class="poster" id="me-title"><span id="me-l1">둥근</span><span>탁자</span><span class="seal" aria-hidden="true">뤼미에르</span></h1>
+      <p class="lead">탁자 위 카드 가운데 하나를 골라 30분 동안 깊이 이야기해요. 기록자는 워크시트를 사진으로 올리고, 누구나 방명록에 한 줄을 남길 수 있어요.</p>
+      <p class="seat-lab" id="seat-lab">내가 앉은 탁자</p>
+      <div class="seats" id="seats" role="group" aria-labelledby="seat-lab"></div>
+    </div>
+    <figure class="archwin" id="arch">
+      <img class="dim" src="assets/arch.jpg" alt="불이 꺼진 응접실. 주홍빛 아치 문, 코발트색 둥근 탁자와 의자를 그린 유화">
+      <img class="lit" src="assets/arch.jpg" alt="" aria-hidden="true">
+      <div class="glow" aria-hidden="true"></div><div class="flame" aria-hidden="true"></div>
+      <figcaption class="cap" id="archcap"><span class="k">오늘의 탁자</span><span class="t">번호를 고르면 이 방에 불이 켜져요</span></figcaption>
+    </figure>
+  </div>
+
+  <nav class="tabs" aria-label="탁자 활동">
+    <div class="wrap">
+      <a href="#cards" class="on">카드</a><a href="#record">기록</a><a href="#guestbook">방명록</a><a href="#vote">투표</a>
+    </div>
+  </nav>
+
+  <!-- ===== cards ===== -->
+  <section class="blk band-table" id="cards" aria-labelledby="cards-h">
+    <div class="wrap">
+      <h2 id="cards-h">이야기할 카드 고르기</h2>
+      <p class="lead">의자를 눌러 주제를 고르고, 탁자 모두가 끌리는 카드가 나오면 "이 카드로 이야기할게요"를 눌러요.</p>
+      <div class="deckgrid">
+        <div class="tablestage" role="group" aria-label="세 가지 주제">
+          <div class="top" aria-hidden="true"><span id="tabletop">카드를 골라 주세요</span></div>
+          <button class="chair env" type="button" data-deck="env" aria-pressed="true">환경<small>도구 · 지식</small></button>
+          <button class="chair pro" type="button" data-deck="pro" aria-pressed="false">프로세스<small>맡김 · 검증</small></button>
+          <button class="chair chg" type="button" data-deck="chg" aria-pressed="false">변화관리<small>사람 · 역할</small></button>
+        </div>
+        <div>
+          <div class="cardstage"><div class="qcard" id="qcard" aria-live="polite"><div class="face front" id="faceA"></div><div class="face back" id="faceB"></div></div></div>
+          <div class="deck-actions">
+            <button class="btn btn-ghost btn-sm" type="button" id="again">다른 카드 보기</button>
+            <button class="btn btn-primary btn-sm" type="button" id="pick">이 카드로 이야기할게요</button>
+          </div>
+        </div>
+      </div>
+      <div class="chosen" id="chosen" hidden></div>
+      <details class="all"><summary>카드 15장 한눈에 보기</summary><div class="cardlist" id="cardlist"></div></details>
+
+      <div class="timer">
+        <div class="candle idle" id="candle" aria-hidden="true"><div class="wax" id="wax"><div class="wick"></div><div class="flame"></div></div><div class="holder"></div></div>
+        <div>
+          <div class="clock" id="clock" role="timer" aria-live="off">30:00</div>
+          <ol class="flow" id="flow"></ol>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-primary btn-sm" type="button" id="t-go">촛불 켜기</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="t-reset">처음으로</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="askai paper"><span class="wax" aria-hidden="true">AI</span>
+        <h3 style="font-size:20px">이야기가 맴돌 때, 질문 하나 더</h3>
+        <p class="muted" style="margin:4px 0 14px;font-size:14.5px">지금까지 나온 이야기를 한두 줄로 적으면, AI가 고른 카드와 함께 읽고 한 걸음 더 들어가는 질문을 제안해요. 답은 탁자가 찾아요.</p>
+        <div class="row">
+          <div class="field"><label for="ctx">지금까지 나온 이야기</label><textarea id="ctx" maxlength="400" placeholder="예: 도구는 다 깔았는데 팀마다 쓰는 정도가 너무 달라요. 공유회를 해도 늘 같은 사람만 발표해요."></textarea></div>
+          <button class="btn btn-ink" type="button" id="ask">질문 받아 보기</button>
+        </div>
+        <div id="ai-q" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== record ===== -->
+  <section class="blk" id="record" aria-labelledby="record-h">
+    <div class="wrap">
+      <h2 id="record-h">워크시트 올리기</h2>
+      <p class="lead">탁자의 기록자가 맡아요. 워크시트를 사진으로 올리면 발표 시간에 큰 화면으로 함께 봐요.</p>
+      <form class="paper" id="recform" novalidate><span class="wax" aria-hidden="true">기록</span>
+        <div class="paper-top"><h2 id="rec-title">기록자</h2><span class="muted" id="rec-current"></span></div>
+        <div class="recgrid">
+          <div class="formrow">
+            <div class="field"><label for="r-code">기록자 코드</label><div class="hint">워크시트 오른쪽 위에 적혀 있어요.</div><input id="r-code" type="text" inputmode="numeric" autocomplete="off"></div>
+            <div class="field"><label for="r-presenter">발표하실 분</label><input id="r-presenter" type="text" autocomplete="off" placeholder="예: 김OO 팀장"></div>
+            <div class="field"><label for="r-topic">이야기한 카드</label><select id="r-topic"></select></div>
+            <label class="check"><input type="checkbox" id="r-ai" checked><span>AI에게 발표 메모 초안을 부탁할게요. 사진 속 손글씨를 읽어 세 줄 요약과 1분 발표 메모를 써요.</span></label>
+          </div>
+          <label class="drop" for="r-photo" id="drop">
+            <input id="r-photo" type="file" accept="image/*" capture="environment" class="sr">
+            <span id="drop-in"><b>워크시트 사진 찍기</b>또는 갤러리에서 고르기</span>
+          </label>
+        </div>
+        <div style="margin-top:20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <button class="btn btn-ink" type="submit" id="r-send">워크시트 올리기</button>
+          <span class="muted" id="r-status" aria-live="polite" style="font-size:14px"></span>
+        </div>
+
+        <div class="draftbox" id="draftbox" hidden>
+          <div class="ai-note" id="ai-read" hidden><span class="who">AI 초안 · 고쳐서 저장해 주세요</span><p id="ai-read-p"></p></div>
+          <div class="field"><label for="m-summary">세 줄 요약</label><textarea id="m-summary" placeholder="한 줄에 하나씩"></textarea></div>
+          <div class="field"><label for="m-pitch">1분 발표 메모</label><textarea id="m-pitch" style="min-height:120px"></textarea></div>
+          <div><button class="btn btn-ink" type="button" id="m-save">발표 메모 저장</button></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== guestbook ===== -->
+  <section class="blk band-2" id="guestbook" aria-labelledby="gb-h">
+    <div class="wrap">
+      <h2 id="gb-h">살롱의 방명록</h2>
+      <p class="lead">18세기 살롱의 손님들은 돌아가는 길에 방명록에 한 줄을 남겼어요. 오늘 가져가는 생각 하나와, 오늘 자리가 얼마나 밝았는지 등불로 알려 주세요.</p>
+      <div class="gb">
+        <form class="paper" id="gbform" novalidate>
+          <div class="field">
+            <span class="lab" id="rate-lab">오늘 자리는 얼마나 밝았나요</span>
+            <div class="rate" id="rate" role="radiogroup" aria-labelledby="rate-lab"></div>
+            <div class="ratelbl" id="ratelbl"></div>
+          </div>
+          <div class="field" style="margin-top:14px"><label for="g-text">오늘 가져가는 한 가지</label><textarea id="g-text" maxlength="300" placeholder="조직에 돌아가 해 보고 싶은 것, 새로 생긴 질문, 마음에 남은 말"></textarea></div>
+          <div class="field" style="margin-top:14px"><label for="g-name">이름 (선택)</label><input id="g-name" type="text" maxlength="30" placeholder="비워 두면 이름 없이 남아요"></div>
+          <div style="margin-top:18px"><button class="btn btn-ink" type="submit">방명록에 남기기</button></div>
+        </form>
+        <div>
+          <div class="slips" id="slips"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== vote ===== -->
+  <section class="blk" id="vote" aria-labelledby="vote-h">
+    <div class="wrap">
+      <h2 id="vote-h">가장 도움이 된 탁자</h2>
+      <p class="lead">발표가 모두 끝나면 투표가 열려요. 내 탁자를 뺀 나머지 가운데 한 곳에 한 표, 닫히기 전까지는 바꿀 수 있어요.</p>
+      <span class="vstate" id="vstate">투표 전</span>
+      <div id="vbody"></div>
+    </div>
+  </section>
+</main>
+<footer class="motto"><div class="wrap"><div><div class="m">빨리 말고, 같이 오래.</div><div style="margin-top:8px">AX 살롱 뤼미에르 · 2026. 11. 28. 토 · 패스트파이브 삼성4호점</div></div><div>주최 창의인재개발연구소 × 다오랩 × 패스트파이브<br>도서 협찬 박영사</div></div></footer>
+
+<script src="live.config.js"></script>
+<script src="live.js"></script>
+<script>
+(() => {
+  const { TABLES, esc, $, $$, store, toast, compressImage, DECKS, CARDS, api, poll, lamps, lampify, demoBanner, reduceMotion, DEMO } = window.AXL;
+  demoBanner(); lampify($('#arch'));
+  let me = Number(new URLSearchParams(location.search).get('t')) || store.get('axl-table');
+  let S = null;
+
+  /* ---------- my table ---------- */
+  const seats = $('#seats');
+  seats.innerHTML = TABLES.map(t => `<button class="seat" type="button" data-t="${t}" aria-pressed="false" aria-label="${t}번 탁자">${t}</button>`).join('');
+  function setMe(t) {
+    me = t; store.set('axl-table', t);
+    $$('.seat').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.t) === t)));
+    $('#me-l1').textContent = t ? `${t}번` : '둥근';
+    paintCap();
+    $('#rec-title').textContent = t ? `${t}번 탁자 기록자` : '기록자';
+    tm = store.get(tkey(), { startAt: 0, left: TOTAL }); paintTimer();
+    render(true);
+  }
+  seats.addEventListener('click', e => { const b = e.target.closest('.seat'); if (b) setMe(Number(b.dataset.t)); });
+
+  /* ---------- tabs follow the scroll ---------- */
+  const tabs = $$('.tabs a');
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) tabs.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
+  $$('section.blk').forEach(s => io.observe(s));
+
+  /* ---------- cards ---------- */
+  const qcard = $('#qcard'), faces = [$('#faceA'), $('#faceB')];
+  let showing = 0, deck = 'env', current = null, last = {};
+  const cardHTML = c => `<div class="fh" style="background:${c.color}"><span class="id">${c.id}</span><span class="deck">${esc(c.deckName)}<br>${esc(c.deckSub)}</span></div>
+    <div class="fb"><div class="ft">${esc(c.title)}</div><div class="fq">${esc(c.q)}</div><div class="stuck"><b>막힐 때</b>${esc(c.stuck)}</div></div>`;
+  function show(c) {
+    current = c; const next = 1 - showing;
+    faces[next].innerHTML = cardHTML(c);
+    qcard.classList.toggle('flip', next === 1); showing = next;
+    $$('.chair').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.deck === c.deck)));
+    $('#tabletop').textContent = c.id + ' · ' + c.title;
+  }
+  function draw(key) {
+    deck = key; const cards = DECKS[key].cards; let i;
+    do { i = Math.floor(Math.random() * cards.length); } while (cards.length > 1 && i === last[key]);
+    last[key] = i; show(CARDS[cards[i][0]]);
+  }
+  faces[0].innerHTML = cardHTML(CARDS['E-1']); current = CARDS['E-1']; last.env = 0; $('#tabletop').textContent = 'E-1 · ' + CARDS['E-1'].title;
+  $$('.chair').forEach(b => b.addEventListener('click', () => draw(b.dataset.deck)));
+  $('#again').addEventListener('click', () => draw(deck));
+  $('#cardlist').innerHTML = Object.values(CARDS).map(c => `<button type="button" data-id="${c.id}" style="--c:${c.color}"><b>${c.id}</b>${esc(c.title)}</button>`).join('');
+  $('#cardlist').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { show(CARDS[b.dataset.id]); $('#cards').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }); } });
+  $('#pick').addEventListener('click', async () => {
+    if (!me) { toast('먼저 내 탁자 번호를 골라 주세요.', 'err'); seats.scrollIntoView({ block: 'center' }); return; }
+    const b = $('#pick'); b.disabled = true;
+    try { await api.send('topic', { table: me, cardId: current.id, title: current.title }); toast(`${me}번 탁자는 ${current.id} 카드로 이야기해요.`); live.refresh(); }
+    catch (e) { toast(e.message, 'err'); } finally { b.disabled = false; }
+  });
+  $('#r-topic').innerHTML = '<option value="">카드를 골라 주세요</option>' + Object.values(CARDS).map(c => `<option value="${c.id}">${c.id} · ${esc(c.title)}</option>`).join('');
+
+  /* ---------- candle timer (30분, 탁자마다 이 기기에 저장) ---------- */
+  const TOTAL = 30 * 60;
+  const STEPS = [[0, 3, '함께 이야기할 카드 고르기'], [3, 15, '돌아가며 내 AX 경험 나누기'], [15, 24, '비슷한 이슈를 넘어선 사례 나누기'], [24, 30, '조직에 가져갈 포인트 정리, 발표자 정하기']];
+  $('#flow').innerHTML = STEPS.map(([a, b, t]) => `<li><span>${a}–${b}분</span>${t}</li>`).join('');
+  const tkey = () => 'axl-timer-' + (me || 0);
+  let tm = store.get(tkey(), { startAt: 0, left: TOTAL });
+  function remain() { return tm.startAt ? Math.max(0, tm.left - (Date.now() - tm.startAt) / 1000) : tm.left; }
+  function paintTimer() {
+    const r = remain(), m = Math.floor(r / 60), s = Math.floor(r % 60);
+    $('#clock').textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    $('#wax').style.setProperty('--h', (r / TOTAL).toFixed(4));
+    const el = (TOTAL - r) / 60;
+    $$('#flow li').forEach((li, i) => { li.classList.toggle('on', el >= STEPS[i][0] && el < STEPS[i][1] && r > 0); li.classList.toggle('done', el >= STEPS[i][1]); });
+    const c = $('#candle'); c.classList.toggle('idle', !tm.startAt && r > 0); c.classList.toggle('out', r <= 0);
+    $('#t-go').textContent = r <= 0 ? '촛불이 다 탔어요' : tm.startAt ? '잠시 멈추기' : (r < TOTAL ? '다시 켜기' : '촛불 켜기');
+    $('#t-go').disabled = r <= 0;
+    if (tm.startAt && r <= 0) { tm = { startAt: 0, left: 0 }; store.set(tkey(), tm); toast('30분이 지났어요. 발표자와 정리한 포인트를 확인해 주세요.'); }
+  }
+  $('#t-go').addEventListener('click', () => { tm = tm.startAt ? { startAt: 0, left: remain() } : { startAt: Date.now(), left: tm.left }; store.set(tkey(), tm); paintTimer(); });
+  $('#t-reset').addEventListener('click', () => { tm = { startAt: 0, left: TOTAL }; store.set(tkey(), tm); paintTimer(); });
+  setInterval(paintTimer, 1000); paintTimer();
+
+  /* ---------- AI: one more question ---------- */
+  $('#ask').addEventListener('click', async () => {
+    const ctx = $('#ctx').value.trim();
+    if (ctx.length < 10) { toast('지금까지 나온 이야기를 한두 줄만 적어 주세요.', 'err'); $('#ctx').focus(); return; }
+    const card = (S && me && S.topics[me] && CARDS[S.topics[me].cardId]) || current;
+    const b = $('#ask'); b.disabled = true; b.textContent = '읽는 중…';
+    try {
+      const r = await api.send('ai_question', { table: me || 0, cardId: card.id, cardTitle: card.title, cardQ: card.q, context: ctx });
+      $('#ai-q').innerHTML = `<div class="ai-note"><span class="who">AI가 제안한 질문 · ${esc(card.id)} 카드와 탁자 기록을 읽고</span><p style="font:700 17px/1.55 var(--display)">${esc(r.question)}</p>${r.why ? `<p class="muted" style="margin-top:6px;font-size:14px">${esc(r.why)}</p>` : ''}</div>`;
+    } catch (e) { toast(e.message, 'err'); }
+    finally { b.disabled = false; b.textContent = '질문 받아 보기'; }
+  });
+
+  /* ---------- worksheet upload + AI memo ---------- */
+  let photo = null;
+  $('#r-photo').addEventListener('change', async e => {
+    const f = e.target.files[0]; if (!f) return;
+    $('#r-status').textContent = '사진을 정리하는 중…';
+    try { photo = await compressImage(f); $('#drop-in').innerHTML = `<img src="${photo}" alt="올릴 워크시트 미리보기"><span style="display:block;margin-top:8px;font-size:13.5px">다른 사진으로 바꾸려면 눌러요</span>`; $('#r-status').textContent = ''; }
+    catch (err) { photo = null; $('#r-status').textContent = err.message; }
+  });
+  $('#recform').addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!me) { toast('먼저 내 탁자 번호를 골라 주세요.', 'err'); return; }
+    if (!photo) { toast('워크시트 사진을 먼저 찍거나 골라 주세요.', 'err'); return; }
+    const topicId = $('#r-topic').value || (S && S.topics[me] ? S.topics[me].cardId : '');
+    const b = $('#r-send'); b.disabled = true;
+    const wantDraft = $('#r-ai').checked;
+    $('#r-status').textContent = wantDraft ? '올리고, AI가 손글씨를 읽는 중이에요 (20초쯤)…' : '올리는 중…';
+    try {
+      const r = await api.send('worksheet', { table: me, code: $('#r-code').value.trim(), presenter: $('#r-presenter').value.trim(), topic: topicId ? `${topicId} · ${CARDS[topicId].title}` : '', image: photo, wantDraft });
+      $('#r-status').textContent = '올렸어요. 발표 화면에 이 사진이 나와요.';
+      $('#draftbox').hidden = false;
+      if (r.draft) {
+        $('#ai-read').hidden = false;
+        $('#ai-read-p').textContent = r.draft.read || 'AI가 워크시트를 읽고 아래 초안을 썼어요. 탁자에서 나온 말과 다르면 고쳐 주세요.';
+        $('#m-summary').value = (r.draft.summary || []).join('\n');
+        $('#m-pitch').value = r.draft.pitch || '';
+      } else if (wantDraft && r.aiError) { $('#ai-read').hidden = false; $('#ai-read-p').textContent = r.aiError + ' 요약은 직접 적어 주세요.'; }
+      live.refresh();
+    } catch (err) { $('#r-status').textContent = err.message; toast(err.message, 'err'); }
+    finally { b.disabled = false; }
+  });
+  $('#m-save').addEventListener('click', async () => {
+    const b = $('#m-save'); b.disabled = true;
+    try { await api.send('memo', { table: me, code: $('#r-code').value.trim(), summary: $('#m-summary').value.trim(), pitch: $('#m-pitch').value.trim() }); toast('발표 메모를 저장했어요.'); live.refresh(); }
+    catch (e) { toast(e.message, 'err'); } finally { b.disabled = false; }
+  });
+
+  /* ---------- guestbook ---------- */
+  const LBL = ['', '희미했어요', '조금 밝았어요', '적당히 밝았어요', '환했어요', '눈부셨어요'];
+  let rating = 0;
+  $('#rate').innerHTML = [1, 2, 3, 4, 5].map(n => `<button type="button" role="radio" aria-checked="false" aria-label="등불 ${n}개, ${LBL[n]}" data-n="${n}"><i class="lamp"></i></button>`).join('');
+  function paintRate(n) { $$('#rate button').forEach(b => { const k = Number(b.dataset.n); b.querySelector('.lamp').classList.toggle('on', k <= n); b.setAttribute('aria-checked', String(k === rating)); }); $('#ratelbl').textContent = n ? LBL[n] : ''; }
+  $('#rate').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { rating = Number(b.dataset.n); paintRate(rating); } });
+  $('#rate').addEventListener('mouseover', e => { const b = e.target.closest('button'); if (b) paintRate(Number(b.dataset.n)); });
+  $('#rate').addEventListener('mouseleave', () => paintRate(rating));
+  $('#gbform').addEventListener('submit', async e => {
+    e.preventDefault();
+    const text = $('#g-text').value.trim();
+    if (!text && !rating) { toast('등불을 켜거나 한 줄을 적어 주세요.', 'err'); return; }
+    const b = e.submitter || $('#gbform button[type=submit]'); b.disabled = true;
+    try { await api.send('note', { table: me || 0, rating, text, name: $('#g-name').value.trim() }); $('#g-text').value = ''; toast('방명록에 남겼어요.'); live.refresh(); }
+    catch (err) { toast(err.message, 'err'); } finally { b.disabled = false; }
+  });
+  const seen = new Set(); let firstSlips = true;
+  function paintSlips() {
+    const notes = (S && S.notes || []).slice(0, 30);
+    if (!notes.length) { $('#slips').innerHTML = '<div class="empty">첫 줄을 남겨 주세요. 남긴 글은 이름 없이도 이 벽에 걸려요.</div>'; return; }
+    $('#slips').innerHTML = notes.map((n, i) => {
+      const k = n.at + n.text, fresh = !firstSlips && !seen.has(k); seen.add(k);
+      return `<figure class="slip${fresh ? ' new' : ''}" style="--r:${((i * 37) % 7 - 3) * .5}deg"><p>${esc(n.text)}</p><figcaption class="meta"><span>${n.name ? esc(n.name) : '이름 없이'}${n.table ? ` · ${n.table}번 탁자` : ''}</span>${n.rating ? `<span class="lamps">${lamps(n.rating)}</span>` : ''}</figcaption></figure>`;
+    }).join('');
+    firstSlips = false;
+  }
+
+  /* ---------- vote ---------- */
+  let myVote = null;
+  function paintVote() {
+    const st = S ? S.vote : 'closed', el = $('#vbody');
+    $('#vstate').textContent = st === 'open' ? '투표 중' : st === 'revealed' ? '결과 공개' : '투표 전';
+    $('#vstate').className = 'vstate' + (st === 'open' ? ' open' : '');
+    if (st === 'revealed' && S.votes.counts) {
+      const c = S.votes.counts, max = Math.max(1, ...Object.values(c));
+      el.innerHTML = `<div class="bars" style="margin-top:20px">${TABLES.map(t => `<div class="barrow${c[t] === max && max > 0 ? ' win' : ''}"><span class="lbl">${t}번</span><span class="track"><span class="fill" style="width:${c[t] / max * 100}%"></span></span><span class="n">${c[t]}</span></div>`).join('')}</div>`;
+      return;
+    }
+    if (st !== 'open') { el.innerHTML = '<p class="muted" style="margin-top:14px">발표가 끝나면 진행자가 투표를 열어요. 이 화면은 저절로 바뀌어요.</p>'; return; }
+    if (!me) { el.innerHTML = '<p style="margin-top:14px">투표하려면 맨 위에서 내 탁자 번호를 먼저 골라 주세요.</p>'; return; }
+    myVote = S.votes.mine || store.get('axl-myvote-' + me);
+    el.innerHTML = `<div class="choices">${TABLES.filter(t => t !== me).map(t => {
+      const w = S.worksheets[t], tp = S.topics[t];
+      return `<button class="choice" type="button" data-t="${t}" aria-pressed="${myVote === t}"><span class="ph" style="${w && w.img ? `background-image:url('${esc(w.img)}')` : ''}" aria-hidden="true"></span><b>${t}번 탁자</b><span>${tp ? esc(tp.cardId + ' · ' + tp.title) : '주제 기록 없음'}</span></button>`;
+    }).join('')}</div><p class="muted" style="margin-top:12px;font-size:14px">${myVote ? `${myVote}번 탁자에 투표했어요. 닫히기 전까지 바꿀 수 있어요.` : '한 곳을 눌러 투표해요.'}</p>`;
+  }
+  $('#vbody').addEventListener('click', async e => {
+    const b = e.target.closest('.choice'); if (!b) return;
+    const t = Number(b.dataset.t);
+    $$('.choice').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    try { await api.send('vote', { voterTable: me, choice: t }); store.set('axl-myvote-' + me, t); toast(`${t}번 탁자에 투표했어요.`); live.refresh(); }
+    catch (err) { toast(err.message, 'err'); live.refresh(); }
+  });
+
+  /* ---------- live state ---------- */
+  function paintCap() {
+    const tp = S && me && S.topics[me];
+    $('#archcap').innerHTML = !me ? '<span class="k">오늘의 탁자</span><span class="t">번호를 고르면 이 방에 불이 켜져요</span>'
+      : tp ? `<span class="k">${me}번 탁자가 고른 카드</span><span class="t">${esc(tp.cardId)} · ${esc(tp.title)}</span>`
+      : `<span class="k">${me}번 탁자</span><span class="t">아직 카드를 고르는 중이에요</span><span class="s">아래에서 함께 골라 보세요</span>`;
+  }
+  let sig = '';
+  function render(force) {
+    if (!S) return;
+    const now = JSON.stringify([me, S.vote, S.topics, S.worksheets, S.votes, S.notes.length && S.notes[0].at, S.notes.length]);
+    if (!force && now === sig) return; sig = now;
+    const tp = me && S.topics[me];
+    const ch = $('#chosen');
+    if (tp && CARDS[tp.cardId]) { ch.hidden = false; ch.innerHTML = `<span class="id">${esc(tp.cardId)}</span><div><span class="muted" style="font-size:13px">${me}번 탁자가 고른 카드</span><br><b>${esc(tp.title)}</b></div>`; if (!$('#r-topic').value) $('#r-topic').value = tp.cardId; }
+    else ch.hidden = true;
+    const w = me && S.worksheets[me];
+    $('#rec-current').innerHTML = w && w.img ? `<span class="current" style="margin:0"><img src="${esc(w.img)}" alt="">올린 워크시트가 있어요${w.presenter ? ` · 발표 ${esc(w.presenter)}` : ''}</span>` : '';
+    paintCap(); paintSlips(); paintVote();
+  }
+  const live = poll((s, err) => { if (s) { S = s; render(); } }, DEMO ? 2500 : 8000);
+  if (me) setMe(me);
+})();
+</script>
+</body>
+</html>
