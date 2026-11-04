@@ -3,13 +3,13 @@
  * Apps Script 웹 앱을 배포한 뒤 나오는 주소(…/exec)를 endpoint 에 넣으면 실제로 기록돼요.
  */
 window.AX_LIVE = {
-  endpoint: '',
+  endpoint: 'https://script.google.com/macros/s/AKfycbz0vXA7pSt-eI6SrHVEEc2rFqt8UAxcOWvHpMbg3KtUm3N957LP2Yq6nzq_ziPCxfAj/exec',
   tables: 6,
   eventDate: '2026-11-28',
 
   /* 대시보드의 "구글 시트 열기", "워크시트 사진 폴더" 버튼 (비워 두면 숨겨져요) */
   sheetUrl: '',
-  driveUrl: '',
+  driveUrl: 'https://drive.google.com/drive/folders/1DUSmL_36cw-OizdBg1GHHGIQEnUDTcNB',
 
   /* 순서지 위쪽에 보이는 와이파이 안내 (예: 'FastFive_Guest / 비밀번호 0000') */
   wifi: '',
