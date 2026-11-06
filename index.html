@@ -365,6 +365,9 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
 .mapframe iframe { display: block; width: 100%; height: 100%; border: 0; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .btn[disabled] { opacity: .6; cursor: progress; }
+.bookfig { margin: 0; display: flex; align-items: center; padding: 8px 10px; min-width: 0; }
+.bookfig img { width: 54px; height: auto; flex: none; transform: rotate(-4deg); filter: drop-shadow(0 8px 10px rgba(43,20,32,.28)); transition: transform .3s ease; }
+.bookfig:hover img { transform: rotate(0deg) translateY(-3px); }
 .thanks b small, .thanks-inline small { font-family: var(--body); font-size: 12px; font-weight: 500; opacity: .75; margin-left: 5px; letter-spacing: 0; }
 .hosted { margin: 16px 0 22px; font-size: 13px; color: var(--cream-dim); letter-spacing: .01em; }
 .hosted b { color: var(--cream); font-weight: 600; }
@@ -401,9 +404,9 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
           <div><dt>DATE</dt><dd>2026. 11. 28. 토</dd></div>
           <div><dt>TIME</dt><dd>14:00 — 17:45</dd></div>
           <div><dt>PLACE</dt><dd>서울 강남<small>확정 안내에서 알려 드려요</small></dd></div>
-          <div><dt>GUEST</dt><dd>초대받은 분과 함께<small>참석한 분께 작은 선물을 준비했어요</small></dd></div>
+          <div><dt>GUEST</dt><dd>초대받은 분과 함께<small>프라이빗 모임으로 열려요</small></dd></div>
         </dl>
-        <p class="hosted"><span class="nw">주최 <b>창의인재개발연구소 × 다오랩 × 패스트파이브</b></span> · <span class="nw">도서 협찬 <b>박영사</b></span></p>
+        <p class="hosted"><span class="nw">주최 <b>창의인재개발연구소 × 다오랩 × 패스트파이브</b></span></p>
         <div class="cta-row">
           <button class="btn btn-primary" type="button" data-open>참석 회신하기 →</button>
           <a class="btn btn-ghost" href="#program">오늘의 순서 보기</a>
@@ -579,6 +582,9 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
                   <button class="plink" type="button" data-person="kim">프로필 보기</button>
                 </div>
               </div>
+              <figure class="bookfig">
+                <img src="assets/book.webp" alt="『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 표지" width="320" height="504" loading="lazy">
+              </figure>
             </div>
           </div>
         </div>
@@ -665,8 +671,8 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
         <div>
           <div class="eyebrow" style="color:var(--ink-soft)">Invitation</div>
           <h2 id="invite-title" style="margin-top:8px">초대장을 받으셨나요?</h2>
-          <p>첫 모임은 AX 살롱의 프라이빗 모임으로 운영해요. 초대를 받은 분들과 함께해요. 참석한 분들에게 작은 선물을 준비했어요. 회신을 주시면 확인한 뒤 확정 안내와 함께 장소를 알려 드려요.</p>
-          <div class="dates"><span>회신 마감 11월 15일(일)</span><span>확정 안내를 받은 분만 입장</span><span>프라이빗 모임</span><span>참석한 분께 작은 선물</span><span>가장 도움이 된 탁자에 선물</span></div>
+          <p>첫 모임은 AX 살롱의 프라이빗 모임으로 운영해요. 초대를 받은 분들과 함께해요. 11월 20일(금)까지 회신을 주시면 확인한 뒤 확정 안내와 함께 장소를 알려 드려요.</p>
+          <div class="dates"><span>다른 조직의 AX 실전 경험</span><span>AX를 이끄는 리더들과의 연결</span><span>막힌 곳을 함께 푸는 해법</span><span>조직에 가져갈 실행 포인트</span><span>살롱 뒤에도 이어지는 네트워크</span></div>
         </div>
         <div style="display:grid;gap:18px;justify-items:center">
           <div class="seal-sm" aria-hidden="true">AX</div>
@@ -683,7 +689,7 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
       <div class="motto2">빨리 말고, 같이 오래.</div>
       <div style="margin-top:8px">AX 살롱 뤼미에르 · 2026. 11. 28. 토 14:00 — 17:45 · 서울 강남 (장소는 확정된 분께 안내해요)</div>
     </div>
-    <div style="text-align:right">주최 창의인재개발연구소 × 다오랩 × 패스트파이브<br><span style="opacity:.8">도서 협찬 박영사</span></div>
+    <div style="text-align:right">주최 창의인재개발연구소 × 다오랩 × 패스트파이브</div>
     <div class="thanks"><span class="lab">Special thanks to</span><b>김계옥<small>카카오 테크리드</small></b><b>신원<small>CJ올리브영 AX 전략</small></b><b>윤누리<small>지피터스 프로덕트 빌더</small></b><span>기획 자문단 · 둥근 탁자의 질문을 함께 빚어 주셨어요.</span></div>
   </div>
 </footer>
@@ -696,7 +702,7 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
     <button class="close" type="button" data-close aria-label="회신서 닫기">×</button>
     <div class="eyebrow" style="color:var(--ink-soft);margin-top:30px">RSVP</div>
     <h2 id="apply-title">참석 회신</h2>
-    <p class="lead">첫 모임은 AX 살롱의 프라이빗 모임으로, 조직에서 AX를 이끌어 본 팀장급 이상 리더 가운데 초대를 받은 분들과 함께해요. 참석한 분들에게 작은 선물을 준비했어요. 11월 28일(토) 오후 2시부터 5시 45분까지 서울 강남에서 만나요. 회신을 확인한 뒤 확정 안내와 장소를 메일로 보내 드리고, 확정 안내를 받은 분만 입장하실 수 있어요. 회신 마감은 11월 15일(일)이에요.</p>
+    <p class="lead">첫 모임은 AX 살롱의 프라이빗 모임으로, 조직에서 AX를 이끌어 본 팀장급 이상 리더 가운데 초대를 받은 분들과 함께해요. 11월 28일(토) 오후 2시부터 5시 45분까지 서울 강남에서 만나요. 회신을 확인한 뒤 확정 안내와 장소를 메일로 보내 드리고, 확정 안내를 받은 분만 입장하실 수 있어요. 회신 마감은 11월 20일(금)이에요.</p>
     <p class="draftnote"><b>시안 안내</b> · 접수 창구를 연결하기 전 시안이에요. 지금은 제출하면 확인 화면까지만 보이고, 내용은 저장되지 않아요.</p>
 
     <div class="progress" id="progressbar" aria-hidden="true"><span id="prog-txt">0 / 8</span><div class="track"><div class="fill" id="prog"></div></div><span>필수 항목</span></div>
@@ -723,8 +729,8 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
         <legend>AX 경험</legend>
         <p class="legend-sub">탁자를 꾸릴 때 참고해요.</p>
         <div class="field" data-req><label for="f-role">조직에서 AI·AX와 관련해 맡고 계신 일<span class="req">*</span></label><input id="f-role" name="role" type="text" placeholder="예: 전사 AX 추진 리드, HR 부문 AI 도입 총괄"><div class="err"></div></div>
-        <div class="field" data-req><label for="f-exp">어떤 경험을 해 오셨나요<span class="req">*</span></label><div class="hint">무엇을 해 봤고, 무엇이 바뀌었거나 어디서 막혔는지 두세 문장이면 충분해요.</div><textarea id="f-exp" name="experience"></textarea><div class="err"></div></div>
-        <div class="field"><span class="lab" id="seat-lab">관심 주제 (여러 개 골라도 돼요)</span><div class="hint">당일 탁자에서 함께 고를 토론 주제예요.</div>
+        <div class="field" data-req><label for="f-exp">AX 관련 어떤 경험을 해 오셨나요<span class="req">*</span></label><div class="hint">무엇을 해 봤고, 무엇이 바뀌었거나 어디서 막혔는지 두세 문장이면 충분해요.</div><textarea id="f-exp" name="experience"></textarea><div class="err"></div></div>
+        <div class="field"><span class="lab" id="seat-lab">AX 관심 주제</span><div class="hint">살롱 웹페이지 라운드 테이블의 키워드를 클릭하시면 논의 주제를 볼 수 있어요. 여러 개 골라도 돼요.</div>
           <div class="chips" role="group" aria-labelledby="seat-lab">
             <input type="checkbox" name="seat" id="s-env" value="환경"><label for="s-env">환경 · 도구와 지식</label>
             <input type="checkbox" name="seat" id="s-pro" value="프로세스"><label for="s-pro">프로세스 · 맡김과 검증</label>
@@ -899,7 +905,7 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
             bio: ['단국대학교 교육혁신원에서 대학의 교수학습과 학생 지원을 연구해요', '사용자 페르소나처럼 디자인씽킹 도구로 사람의 필요에서 출발하는 지원 체계를 설계해 왔어요', '『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 공저자'] },
     shin: { name: '신지현', role: '살로니에르 · 세션 진행', org: '서스틴브릿지 대표', c: 'var(--ochre)', photo: 'assets/people/shin.jpg',
             host: ['Salonnière', '살롱을 함께 차렸어요. 연사의 이야기가 둥근 탁자의 대화로 이어지도록 살롱의 흐름을 설계하고 이끌어요.', ['세션 진행', '등불지기']],
-            bio: ['미래의 일과 조직을 연구하고 실험하는 비영리 커뮤니티 다오랩에서 AX 살롱을 기획해요', 'IBM에서 CSR과 연사 프로그램을 맡아 사람과 이야기를 이어 왔어요'] },
+            bio: ['IBM에서의 CSR 경력을 포함하여 ESG/CSR·마케팅 분야에서 약 25년간 실무 경험을 쌓은 글로벌 ESG·CSR 전문가예요', "미래의 일과 조직을 연구하고 실험하는 비영리 커뮤니티 '다오랩'에서 다오콘, AX 살롱을 기획했어요", "'AI 시대, 굿 거버넌스'에 관심이 많고, 「한 권으로 끝내는 ESG 수업」 저자, 「ESG 생존경영」 공저자예요"] },
     jung: { name: '정효정', role: '살로니에르 · 살롱 솔루션 기획', org: '단국대학교 교수', c: 'var(--ochre)', photo: 'assets/people/jung.jpg',
             host: ['Salonnière', '살롱을 함께 차렸어요. 탁자의 대화가 조직의 실천으로 이어지도록 살롱 솔루션 세션을 기획했어요.', ['살롱 솔루션 기획', '등불지기', '공저자']],
             bio: ['교육혁신원 교수학습개발센터장으로 대학의 AX 대응과 교원·학생의 JX를 지원해요', '창의인재개발연구소에서 인재양성의 미래 아젠다를 제안하고 사람을 연결해요', '바이오헬스·글로벌K-컬처 융합전공을 운영해요', '『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 공저자'] },
