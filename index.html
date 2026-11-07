@@ -365,9 +365,16 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
 .mapframe iframe { display: block; width: 100%; height: 100%; border: 0; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .btn[disabled] { opacity: .6; cursor: progress; }
-.bookfig { margin: 0; display: flex; align-items: center; padding: 8px 10px; min-width: 0; }
-.bookfig img { width: 54px; height: auto; flex: none; transform: rotate(-4deg); filter: drop-shadow(0 8px 10px rgba(43,20,32,.28)); transition: transform .3s ease; }
-.bookfig:hover img { transform: rotate(0deg) translateY(-3px); }
+.guests.solo { grid-template-columns: 1fr; }
+.guest.withbook { position: relative; padding-right: 150px; }
+.guest .bookimg { position: absolute; right: 40px; top: 50%; width: 74px; height: auto; transform: translateY(-50%) rotate(-5deg); filter: drop-shadow(0 12px 14px rgba(43,20,32,.3)); transition: transform .35s ease; }
+.guest.withbook:hover .bookimg { transform: translateY(-54%) rotate(0deg); }
+@media (max-width: 760px) {
+  .guest.withbook { padding-right: 16px; }
+  .guest.withbook .name, .guest.withbook .org, .guest.withbook .gtime { padding-right: 58px; }
+  .guest .bookimg { right: 16px; top: 14px; width: 46px; transform: rotate(-5deg); }
+  .guest.withbook:hover .bookimg { transform: rotate(0deg); }
+}
 .thanks b small, .thanks-inline small { font-family: var(--body); font-size: 12px; font-weight: 500; opacity: .75; margin-left: 5px; letter-spacing: 0; }
 .hosted { margin: 16px 0 22px; font-size: 13px; color: var(--cream-dim); letter-spacing: .01em; }
 .hosted b { color: var(--cream); font-weight: 600; }
@@ -571,8 +578,9 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
             <span class="tag">살롱 솔루션 · Co-Creation</span>
             <h4>살롱 이후, 조직에 어떻게 뿌리내릴까?</h4>
             <p>탁자에서 나온 이야기를 조직 안에서 이어 가는 방법을 나눠요.</p>
-            <div class="guests">
-              <div class="guest">
+            <div class="guests solo">
+              <div class="guest withbook">
+                <img class="bookimg" src="assets/book.webp" alt="『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 표지" width="320" height="504" loading="lazy">
                 <div class="mono" aria-hidden="true">김</div>
                 <div>
                   <div class="name">김혜영</div><div class="org">단국대학교 교육혁신원 교수</div>
@@ -582,9 +590,7 @@ footer .motto2 { font-family: var(--display); font-size: clamp(24px, 3vw, 34px);
                   <button class="plink" type="button" data-person="kim">프로필 보기</button>
                 </div>
               </div>
-              <figure class="bookfig">
-                <img src="assets/book.webp" alt="『사람이 묻고, AI로 확장하는 디자인 씽킹 Co-creation』 표지" width="320" height="504" loading="lazy">
-              </figure>
+
             </div>
           </div>
         </div>
