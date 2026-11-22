@@ -303,7 +303,7 @@ details.all summary { cursor: pointer; color: var(--cream-dim); font-size: 14.5p
 
   /* ---------- candle timer (30분, 탁자마다 이 기기에 저장) ---------- */
   const TOTAL = 30 * 60;
-  const STEPS = [[0, 3, '함께 이야기할 카드 고르기'], [3, 15, '돌아가며 내 AX 경험 나누기'], [15, 24, '비슷한 이슈를 넘어선 사례 나누기'], [24, 30, '조직에 가져갈 포인트 정리, 발표자 정하기']];
+  const STEPS = [[0, 3, '여는 질문 · 우리 조직의 AX, 한 문장으로'], [3, 15, '하나의 질문 · 카드 한 장을 골라 사례 나누기'], [15, 24, '더 깊은 질문 · 왜 막혔을까, 무엇을 해 볼까'], [24, 30, '하나의 실행 · 바로 해 볼 한 가지, 발표자 정하기']];
   $('#flow').innerHTML = STEPS.map(([a, b, t]) => `<li><span>${a}–${b}분</span>${t}</li>`).join('');
   const tkey = () => 'axl-timer-' + (me || 0);
   let tm = store.get(tkey(), { startAt: 0, left: TOTAL });
