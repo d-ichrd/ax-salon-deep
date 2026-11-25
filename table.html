@@ -109,7 +109,7 @@ details.all summary { cursor: pointer; color: var(--cream-dim); font-size: 14.5p
     <div>
       <div class="eyebrow">The Round Table · 11.28 Sat</div>
       <h1 class="poster" id="me-title"><span id="me-l1">둥근</span><span>탁자</span><span class="seal" aria-hidden="true">뤼미에르</span></h1>
-      <p class="lead">탁자 위 카드 가운데 하나를 골라 30분 동안 깊이 이야기해요. 기록자는 워크시트를 사진으로 올리고, 누구나 방명록에 한 줄을 남길 수 있어요.</p>
+      <p class="lead">각자 카드 한 장으로 막힌 경험을 나누고, 두세 가지를 골라 각 조직의 솔루션을 나눠요. 마치면 포스트잇을 붙인 A3 판을 사진으로 올리고, 누구나 방명록에 한 줄을 남길 수 있어요.</p>
       <p class="seat-lab" id="seat-lab">내가 앉은 탁자</p>
       <div class="seats" id="seats" role="group" aria-labelledby="seat-lab"></div>
     </div>
@@ -131,7 +131,7 @@ details.all summary { cursor: pointer; color: var(--cream-dim); font-size: 14.5p
   <section class="blk band-table" id="cards" aria-labelledby="cards-h">
     <div class="wrap">
       <h2 id="cards-h">이야기할 카드 고르기</h2>
-      <p class="lead">의자를 눌러 주제를 고르고, 탁자 모두가 끌리는 카드가 나오면 "이 카드로 이야기할게요"를 눌러요.</p>
+      <p class="lead">의자를 눌러 주제별 카드를 살펴봐요. 각자 내 경험과 가장 가까운 카드를 고르고, 탁자에서 가장 많이 이야기한 카드를 "이 카드로 이야기할게요"로 남겨 주세요.</p>
       <div class="deckgrid">
         <div class="tablestage" role="group" aria-label="세 가지 주제">
           <div class="top" aria-hidden="true"><span id="tabletop">카드를 골라 주세요</span></div>
@@ -153,7 +153,7 @@ details.all summary { cursor: pointer; color: var(--cream-dim); font-size: 14.5p
       <div class="timer">
         <div class="candle idle" id="candle" aria-hidden="true"><div class="wax" id="wax"><div class="wick"></div><div class="flame"></div></div><div class="holder"></div></div>
         <div>
-          <div class="clock" id="clock" role="timer" aria-live="off">30:00</div>
+          <div class="clock" id="clock" role="timer" aria-live="off">70:00</div>
           <ol class="flow" id="flow"></ol>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
             <button class="btn btn-primary btn-sm" type="button" id="t-go">촛불 켜기</button>
@@ -177,24 +177,24 @@ details.all summary { cursor: pointer; color: var(--cream-dim); font-size: 14.5p
   <!-- ===== record ===== -->
   <section class="blk" id="record" aria-labelledby="record-h">
     <div class="wrap">
-      <h2 id="record-h">워크시트 올리기</h2>
-      <p class="lead">탁자의 기록자가 맡아요. 워크시트를 사진으로 올리면 발표 시간에 큰 화면으로 함께 봐요.</p>
+      <h2 id="record-h">탁자 사진 올리기</h2>
+      <p class="lead">모더레이터가 맡아요. 포스트잇을 붙인 A3 판을 사진으로 올리면 발표 시간에 큰 화면으로 함께 봐요.</p>
       <form class="paper" id="recform" novalidate><span class="wax" aria-hidden="true">기록</span>
         <div class="paper-top"><h2 id="rec-title">기록자</h2><span class="muted" id="rec-current"></span></div>
         <div class="recgrid">
           <div class="formrow">
-            <div class="field"><label for="r-code">기록자 코드</label><div class="hint">워크시트 오른쪽 위에 적혀 있어요.</div><input id="r-code" type="text" inputmode="numeric" autocomplete="off"></div>
+            <div class="field"><label for="r-code">기록자 코드</label><div class="hint">당일 운영진이 알려 드려요.</div><input id="r-code" type="text" inputmode="numeric" autocomplete="off"></div>
             <div class="field"><label for="r-presenter">발표하실 분</label><input id="r-presenter" type="text" autocomplete="off" placeholder="예: 김OO 팀장"></div>
             <div class="field"><label for="r-topic">이야기한 카드</label><select id="r-topic"></select></div>
-            <label class="check"><input type="checkbox" id="r-ai" checked><span>AI에게 발표 메모 초안을 부탁할게요. 사진 속 손글씨를 읽어 세 줄 요약과 1분 발표 메모를 써요.</span></label>
+            <label class="check" style="display:none"><input type="checkbox" id="r-ai"><span>AI에게 발표 메모 초안을 부탁할게요. 사진 속 손글씨를 읽어 세 줄 요약과 1분 발표 메모를 써요.</span></label>
           </div>
           <label class="drop" for="r-photo" id="drop">
             <input id="r-photo" type="file" accept="image/*" capture="environment" class="sr">
-            <span id="drop-in"><b>워크시트 사진 찍기</b>또는 갤러리에서 고르기</span>
+            <span id="drop-in"><b>A3 판 사진 찍기</b>또는 갤러리에서 고르기</span>
           </label>
         </div>
         <div style="margin-top:20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-          <button class="btn btn-ink" type="submit" id="r-send">워크시트 올리기</button>
+          <button class="btn btn-ink" type="submit" id="r-send">사진 올리기</button>
           <span class="muted" id="r-status" aria-live="polite" style="font-size:14px"></span>
         </div>
 
@@ -301,9 +301,9 @@ details.all summary { cursor: pointer; color: var(--cream-dim); font-size: 14.5p
   });
   $('#r-topic').innerHTML = '<option value="">카드를 골라 주세요</option>' + Object.values(CARDS).map(c => `<option value="${c.id}">${c.id} · ${esc(c.title)}</option>`).join('');
 
-  /* ---------- candle timer (30분, 탁자마다 이 기기에 저장) ---------- */
-  const TOTAL = 30 * 60;
-  const STEPS = [[0, 3, '여는 질문 · 우리 조직의 AX, 한 문장으로'], [3, 15, '하나의 질문 · 카드 한 장을 골라 사례 나누기'], [15, 24, '더 깊은 질문 · 왜 막혔을까, 무엇을 해 볼까'], [24, 30, '하나의 실행 · 바로 해 볼 한 가지, 발표자 정하기']];
+  /* ---------- candle timer (70분, 탁자마다 이 기기에 저장) ---------- */
+  const TOTAL = 70 * 60;
+  const STEPS = [[0, 5, '열기 · 녹음 양해, 약속 읽기, 짧은 소개'], [5, 35, '막힌 경험 나누기 · 카드 한 장씩, 키워드는 포스트잇에'], [35, 65, '솔루션 이야기 · 두세 가지를 골라 각 조직의 방법 나누기'], [65, 70, '정리 · 발표할 것과 발표자 정하기, 사진 올리기']];
   $('#flow').innerHTML = STEPS.map(([a, b, t]) => `<li><span>${a}–${b}분</span>${t}</li>`).join('');
   const tkey = () => 'axl-timer-' + (me || 0);
   let tm = store.get(tkey(), { startAt: 0, left: TOTAL });
@@ -317,7 +317,7 @@ details.all summary { cursor: pointer; color: var(--cream-dim); font-size: 14.5p
     const c = $('#candle'); c.classList.toggle('idle', !tm.startAt && r > 0); c.classList.toggle('out', r <= 0);
     $('#t-go').textContent = r <= 0 ? '촛불이 다 탔어요' : tm.startAt ? '잠시 멈추기' : (r < TOTAL ? '다시 켜기' : '촛불 켜기');
     $('#t-go').disabled = r <= 0;
-    if (tm.startAt && r <= 0) { tm = { startAt: 0, left: 0 }; store.set(tkey(), tm); toast('30분이 지났어요. 발표자와 정리한 포인트를 확인해 주세요.'); }
+    if (tm.startAt && r <= 0) { tm = { startAt: 0, left: 0 }; store.set(tkey(), tm); toast('70분이 지났어요. 발표하실 분을 정하고 A3 판 사진을 올려 주세요.'); }
   }
   $('#t-go').addEventListener('click', () => { tm = tm.startAt ? { startAt: 0, left: remain() } : { startAt: Date.now(), left: tm.left }; store.set(tkey(), tm); paintTimer(); });
   $('#t-reset').addEventListener('click', () => { tm = { startAt: 0, left: TOTAL }; store.set(tkey(), tm); paintTimer(); });
@@ -341,13 +341,13 @@ details.all summary { cursor: pointer; color: var(--cream-dim); font-size: 14.5p
   $('#r-photo').addEventListener('change', async e => {
     const f = e.target.files[0]; if (!f) return;
     $('#r-status').textContent = '사진을 정리하는 중…';
-    try { photo = await compressImage(f); $('#drop-in').innerHTML = `<img src="${photo}" alt="올릴 워크시트 미리보기"><span style="display:block;margin-top:8px;font-size:13.5px">다른 사진으로 바꾸려면 눌러요</span>`; $('#r-status').textContent = ''; }
+    try { photo = await compressImage(f); $('#drop-in').innerHTML = `<img src="${photo}" alt="올릴 사진 미리보기"><span style="display:block;margin-top:8px;font-size:13.5px">다른 사진으로 바꾸려면 눌러요</span>`; $('#r-status').textContent = ''; }
     catch (err) { photo = null; $('#r-status').textContent = err.message; }
   });
   $('#recform').addEventListener('submit', async e => {
     e.preventDefault();
     if (!me) { toast('먼저 내 탁자 번호를 골라 주세요.', 'err'); return; }
-    if (!photo) { toast('워크시트 사진을 먼저 찍거나 골라 주세요.', 'err'); return; }
+    if (!photo) { toast('A3 판 사진을 먼저 찍거나 골라 주세요.', 'err'); return; }
     const topicId = $('#r-topic').value || (S && S.topics[me] ? S.topics[me].cardId : '');
     const b = $('#r-send'); b.disabled = true;
     const wantDraft = $('#r-ai').checked;
@@ -443,7 +443,7 @@ details.all summary { cursor: pointer; color: var(--cream-dim); font-size: 14.5p
     if (tp && CARDS[tp.cardId]) { ch.hidden = false; ch.innerHTML = `<span class="id">${esc(tp.cardId)}</span><div><span class="muted" style="font-size:13px">${me}번 탁자가 고른 카드</span><br><b>${esc(tp.title)}</b></div>`; if (!$('#r-topic').value) $('#r-topic').value = tp.cardId; }
     else ch.hidden = true;
     const w = me && S.worksheets[me];
-    $('#rec-current').innerHTML = w && w.img ? `<span class="current" style="margin:0"><img src="${esc(w.img)}" alt="">올린 워크시트가 있어요${w.presenter ? ` · 발표 ${esc(w.presenter)}` : ''}</span>` : '';
+    $('#rec-current').innerHTML = w && w.img ? `<span class="current" style="margin:0"><img src="${esc(w.img)}" alt="">올린 사진이 있어요${w.presenter ? ` · 발표 ${esc(w.presenter)}` : ''}</span>` : '';
     paintCap(); paintSlips(); paintVote();
   }
   const live = poll((s, err) => { if (s) { S = s; render(); } }, DEMO ? 2500 : 8000);

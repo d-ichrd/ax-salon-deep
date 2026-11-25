@@ -116,7 +116,7 @@ p.sec { margin: 0 0 20px; color: var(--cream-dim); }
       <article class="paper">
         <span class="wax" aria-hidden="true">정리</span>
         <div class="paper-top"><h2 id="syn-h">오늘의 정리</h2><span class="muted" id="syn-at"></span></div>
-        <div class="ai-note" style="margin-bottom:18px"><span class="who">AI와 함께 쓴 정리</span><p>모든 탁자의 워크시트와 방명록을 AI가 먼저 읽고 초안을 썼고, 살로니에르가 다듬었어요.</p></div>
+        <div class="ai-note" style="margin-bottom:18px"><span class="who">AI와 함께 쓴 정리</span><p>모든 탁자의 기록과 방명록을 AI가 먼저 읽고 초안을 썼고, 살로니에르가 다듬었어요.</p></div>
         <div class="body" id="syn-body"></div>
       </article>
     </div>
@@ -154,10 +154,8 @@ p.sec { margin: 0 0 20px; color: var(--cream-dim); }
   paint(); setInterval(paint, 30000);
 
   const FILES = [
-    ['worksheet', '탁자 워크시트', '기록자용 한 장, 인쇄해서 써요'],
     ['cards', '질문 카드 15장', '조직에 돌아가 그대로 써 보세요'],
-    ['slides', '연사 발표 자료 묶음', '허락받은 자료만 모았어요'],
-    ['book', '살롱 솔루션 참고 자료', '김혜영 교수 특강 · Co-Creation']
+    ['slides', '연사 발표 자료 묶음', '허락받은 자료만 모았어요']
   ];
   $('#files').innerHTML = FILES.map(([k, t, d]) => M[k]
     ? `<a class="file" href="${esc(M[k])}" target="_blank" rel="noopener"><b>${t}</b><span>${d}</span></a>`

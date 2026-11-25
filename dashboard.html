@@ -125,7 +125,7 @@ dialog::backdrop { background: rgba(20, 6, 14, .7); }
     <div class="tools">
       <button class="btn btn-primary btn-sm" type="button" id="qr-open">탁자 페이지 QR 띄우기</button>
       <a class="btn btn-ghost btn-sm" id="sheet-link" target="_blank" rel="noopener" hidden>구글 시트 열기</a>
-      <a class="btn btn-ghost btn-sm" id="drive-link" target="_blank" rel="noopener" hidden>워크시트 사진 폴더</a>
+      <a class="btn btn-ghost btn-sm" id="drive-link" target="_blank" rel="noopener" hidden>탁자 사진 폴더</a>
       <button class="btn btn-ghost btn-sm" type="button" id="report">구글 문서로 기록 묶기</button>
     </div>
   </section>
@@ -139,8 +139,8 @@ dialog::backdrop { background: rgba(20, 6, 14, .7); }
       <button class="btn btn-primary btn-sm" type="button" id="next">다음 탁자</button>
       <button class="btn btn-ghost btn-sm" type="button" id="shuffle">발표 순서 뽑기</button>
       <span style="flex:1"></span>
-      <span class="ring" id="ring" role="timer">5:00</span>
-      <button class="btn btn-ghost btn-sm" type="button" id="ring-go">5분 시작</button>
+      <span class="ring" id="ring" role="timer">2:30</span>
+      <button class="btn btn-ghost btn-sm" type="button" id="ring-go">2분 30초 시작</button>
     </div>
     <p class="muted" style="font-size:13px;margin-top:10px">← → 로 탁자를 넘기고, 스페이스로 시간을 재요. F를 누르면 전체 화면이에요.</p>
   </section>
@@ -175,7 +175,7 @@ dialog::backdrop { background: rgba(20, 6, 14, .7); }
       <button class="btn btn-ghost btn-sm" type="button" id="syn-pub">순서지에 공개</button>
       <span class="pub" id="syn-state">초안 없음</span>
     </div>
-    <p class="muted" style="margin:0 0 16px;font-size:14.5px;max-width:720px">AI가 모든 탁자의 워크시트 요약, 고른 카드, 방명록, 투표를 읽고 공통 패턴과 남은 질문을 초안으로 써요. 왼쪽에서 고치고 저장한 뒤 공개하면 참석자 순서지에 "오늘의 정리"로 나타나요.</p>
+    <p class="muted" style="margin:0 0 16px;font-size:14.5px;max-width:720px">AI가 모든 탁자의 기록, 고른 카드, 방명록, 투표를 읽고 공통 패턴과 남은 질문을 초안으로 써요. 왼쪽에서 고치고 저장한 뒤 공개하면 참석자 순서지에 "오늘의 정리"로 나타나요.</p>
     <div class="syn">
       <textarea id="syn-text" aria-label="오늘의 정리 원고" placeholder="AI와 함께 초안 쓰기를 누르면 여기에 초안이 들어와요."></textarea>
       <div class="paper preview" id="syn-prev"><div class="empty">미리보기</div></div>
@@ -227,14 +227,14 @@ dialog::backdrop { background: rgba(20, 6, 14, .7); }
     const tp = Object.keys(S.topics).length, ws = Object.values(S.worksheets).filter(w => w.img).length;
     $('#stats').innerHTML = [
       [`${tp}<small style="font-size:18px;color:var(--cream-dim)">/${TABLES.length}</small>`, '카드를 고른 탁자'],
-      [`${ws}<small style="font-size:18px;color:var(--cream-dim)">/${TABLES.length}</small>`, '올라온 워크시트'],
+      [`${ws}<small style="font-size:18px;color:var(--cream-dim)">/${TABLES.length}</small>`, '올라온 탁자 사진'],
       [S.notes.length, '방명록'],
       [S.rating.count ? S.rating.avg.toFixed(1) : '–', `등불 평균 (${S.rating.count}명)`],
       [S.votes.total, S.vote === 'open' ? '투표 중' : S.vote === 'revealed' ? '투표 · 결과 공개' : '투표 · 열리기 전']
     ].map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
     $('#tgrid').innerHTML = TABLES.map(t => {
       const w = S.worksheets[t] || {}, p = S.topics[t];
-      return `<div class="tcard"><div class="ph" style="${w.img ? `background-image:url('${esc(w.img)}')` : ''}">${w.img ? '' : '워크시트 전'}</div>
+      return `<div class="tcard"><div class="ph" style="${w.img ? `background-image:url('${esc(w.img)}')` : ''}">${w.img ? '' : '사진 전'}</div>
         <div class="bd"><span class="no">${t}번 탁자</span><span class="tp">${p ? esc(p.cardId + ' · ' + p.title) : '카드 고르는 중'}</span>
         <span class="ms">${w.presenter ? '발표 ' + esc(w.presenter) : '발표자 미정'} · ${w.summary ? '발표 메모 있음' : '발표 메모 없음'}</span></div></div>`;
     }).join('');
@@ -261,7 +261,7 @@ dialog::backdrop { background: rgba(20, 6, 14, .7); }
     $('#order').innerHTML = `<span class="muted" style="font-size:13.5px;margin-right:4px">발표 순서</span>` + order.map((t, i) => `<button type="button" data-i="${i}" class="${i === pos ? 'on' : ''}${done.has(t) && i !== pos ? ' done' : ''}" aria-label="${t}번 탁자">${t}</button>`).join('');
     const t = order[pos], w = S.worksheets[t] || {}, p = S.topics[t], c = p && CARDS[p.cardId];
     const lines = (w.summary || '').split('\n').map(x => x.trim()).filter(Boolean);
-    $('#stage').innerHTML = `<div class="photo">${w.img ? `<img src="${esc(w.img)}" alt="${t}번 탁자 워크시트">` : `<div class="none">${t}번 탁자의 워크시트가 아직 올라오지 않았어요.<br>기록자에게 탁자 페이지의 "기록"에서 올려 달라고 해 주세요.</div>`}</div>
+    $('#stage').innerHTML = `<div class="photo">${w.img ? `<img src="${esc(w.img)}" alt="${t}번 탁자 사진">` : `<div class="none">${t}번 탁자의 사진이 아직 올라오지 않았어요.<br>모더레이터에게 탁자 페이지의 "기록"에서 올려 달라고 해 주세요.</div>`}</div>
       <div class="side"><div class="num">${t}번 탁자</div>
         <div class="paper">${c ? `<span class="cid" style="background:${c.color}">${c.id}</span><div class="ctitle">${esc(c.title)}</div>` : '<div class="ctitle">카드 기록 없음</div>'}
         ${w.presenter ? `<p class="muted" style="margin:10px 0 0">발표 ${esc(w.presenter)}</p>` : ''}
@@ -276,14 +276,14 @@ dialog::backdrop { background: rgba(20, 6, 14, .7); }
     if (!S) return;
     const spin = setInterval(() => { order = TABLES.slice().sort(() => Math.random() - .5); renderStage(); if (++n > 9) { clearInterval(spin); order = final; pos = 0; done = new Set(); saveStage(); renderStage(); toast('발표 순서를 정했어요: ' + final.join(' · ')); } }, 90);
   });
-  let ringStart = 0, ringLeft = 300, ringT;
+  let ringStart = 0, ringLeft = 150, ringT;
   function paintRing() {
     const r = ringStart ? ringLeft - (Date.now() - ringStart) / 1000 : ringLeft, a = Math.abs(Math.ceil(r));
     $('#ring').textContent = (r < 0 ? '+' : '') + `${Math.floor(a / 60)}:${String(a % 60).padStart(2, '0')}`;
     $('#ring').classList.toggle('late', r < 0);
-    $('#ring-go').textContent = ringStart ? '멈추기' : (ringLeft < 300 ? '이어서' : '5분 시작');
+    $('#ring-go').textContent = ringStart ? '멈추기' : (ringLeft < 150 ? '이어서' : '2분 30초 시작');
   }
-  function resetRing() { ringStart = 0; ringLeft = 300; paintRing(); }
+  function resetRing() { ringStart = 0; ringLeft = 150; paintRing(); }
   function toggleRing() { if (ringStart) { ringLeft -= (Date.now() - ringStart) / 1000; ringStart = 0; } else ringStart = Date.now(); paintRing(); }
   $('#ring-go').addEventListener('click', toggleRing);
   ringT = setInterval(paintRing, 500);
